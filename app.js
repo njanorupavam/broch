@@ -89,10 +89,10 @@ function applyImportedStudents(targetStudents, importedStudents) {
       if (repairedSkills.length) existing.skills = repairedSkills;
       if (repairedKeywords.length) existing.keywords = repairedKeywords;
       updated++;
-    } else if (incoming.skills && incoming.skills.length) {
+    } else {
       targetStudents.push({ ...incoming, skills: repairedSkills, keywords: repairedKeywords, id: nextId++ });
       added++;
-    } else skipped++;
+    }
   });
   return { added, updated, skipped };
 }
@@ -748,8 +748,10 @@ function handleXLSXImport(event) {
   reader.onload = function(e) {
     try {
       const workbook = XLSX.read(e.target.result, { type: 'array' });
-      const sheet = workbook.Sheets[workbook.SheetNames[0]];
-      const rows = XLSX.utils.sheet_to_json(sheet, { defval: '' });
+      const rows = workbook.SheetNames.flatMap(sheetName => {
+        const sheet = workbook.Sheets[sheetName];
+        return sheet ? XLSX.utils.sheet_to_json(sheet, { defval: '', raw: false }) : [];
+      });
 
       if (!rows.length) {
         showImportToast('⚠️ The Excel file appears to be empty.', 'error');
@@ -804,7 +806,6 @@ function handleXLSXImport(event) {
           if (keywords.length) existing.keywords = keywords;
           updated++;
         } else {
-          if (!skills.length) { skipped++; return; } // skip empty skill rows
           targetStudents.push({
             id: nextId++,
             name, email,
@@ -828,16 +829,20 @@ function handleXLSXImport(event) {
         }
         return copy;
       });
-      importedFiles.push({
+      const importedFile = {
         id: `${Date.now()}_${Math.random().toString(36).slice(2)}`,
         name: importedFileName || `Import ${importedFiles.length + 1}`,
         students: importedStudents,
-      });
+      };
+      const previousFileIndex = importedFiles.findIndex(item =>
+        item.name.toLowerCase() === importedFile.name.toLowerCase()
+      );
+      if (previousFileIndex >= 0) importedFiles.splice(previousFileIndex, 1, importedFile);
+      else importedFiles.push(importedFile);
       saveImportedFiles();
-      renderImportedFiles();
-      refreshStreamFilterOptions();
-      updateStreamProgramLabel(`${importedFiles.length} files`);
-      filterData();
+      // Rebuild from the saved source files so replacing a workbook also
+      // removes people/values that no longer exist in its latest version.
+      rebuildStudentsFromImports();
       showImportToast(`✅ Import complete: ${added} added, ${updated} updated, ${skipped} skipped.`, 'success');
 
     } catch(err) {
@@ -1240,7 +1245,7 @@ function filterData() {
 
   const filtered = studentsData.filter(student => {
     // 1. Name match
-    const nameMatch = student.name.toLowerCase().includes(nameQuery);
+    const nameMatch = (student.name || '').toLowerCase().includes(nameQuery);
     
     // 2. Stream match
     let streamMatch = false;
@@ -1248,14 +1253,14 @@ function filterData() {
       streamMatch = true;
     } else {
       // Check if current stream matches or is included in the student's streams array
-      streamMatch = student.streams.some(s => s.toLowerCase().includes(streamValue.toLowerCase()));
+      streamMatch = getStudentStreams(student).some(s => s.toLowerCase().includes(streamValue.toLowerCase()));
     }
     
     // 3. Skills/Keywords match
     let skillMatch = true;
     if (skillQuery) {
-      const keywordMatch = student.keywords.some(kw => kw.toLowerCase().includes(skillQuery));
-      const detailedSkillMatch = student.skills.some(s => 
+      const keywordMatch = (student.keywords || []).some(kw => kw.toLowerCase().includes(skillQuery));
+      const detailedSkillMatch = (student.skills || []).some(s =>
         (s.title && s.title.toLowerCase().includes(skillQuery)) || 
         (s.description && s.description.toLowerCase().includes(skillQuery))
       );
