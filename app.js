@@ -5,7 +5,16 @@ let activeUploadEmail = '';
 let activeEditEmail = '';
 let baseStudentsData = [];
 let importedFiles = [];
+let inlineTextEditing = false;
 const IMPORTED_FILES_KEY = 'brochure_imported_xlsx_files_v1';
+const FRONT_PAGE_NAME_KEY = 'brochure_front_page_name_v1';
+
+function updateFrontPageName(value) {
+  const name = (value || '').trim();
+  if (name) localStorage.setItem(FRONT_PAGE_NAME_KEY, name);
+  else localStorage.removeItem(FRONT_PAGE_NAME_KEY);
+  filterData();
+}
 
 function updateStreamProgramLabel(fileName = '') {
   const label = document.getElementById('filter-stream-label');
@@ -137,8 +146,17 @@ function getStudentStreams(student) {
 function refreshStreamFilterOptions() {
   const select = document.getElementById('filter-stream');
   if (!select) return;
+  const previousValue = select.value || 'all';
+  const streams = [...new Set(studentsData.flatMap(getStudentStreams))]
+    .sort((a, b) => a.localeCompare(b));
   select.innerHTML = '<option value="all">All Streams</option>';
-  select.value = 'all';
+  streams.forEach(stream => {
+    const option = document.createElement('option');
+    option.value = stream;
+    option.textContent = stream;
+    select.appendChild(option);
+  });
+  select.value = streams.includes(previousValue) ? previousValue : 'all';
 }
 
 // ── AI EDITOR ASSISTANT ─────────────────────────────────────────────────────
@@ -888,6 +906,10 @@ function showImportToast(message, type = 'success') {
 // On document load, start with imported XLSX data only.
 document.addEventListener('DOMContentLoaded', () => {
   baseStudentsData = [];
+  const frontPageNameInput = document.getElementById('front-page-name');
+  if (frontPageNameInput) {
+    frontPageNameInput.value = localStorage.getItem(FRONT_PAGE_NAME_KEY) || '';
+  }
   try {
     const savedImports = JSON.parse(localStorage.getItem(IMPORTED_FILES_KEY) || '[]');
     importedFiles = Array.isArray(savedImports) ? savedImports : [];
@@ -911,13 +933,54 @@ function switchView(view) {
     dirView.classList.remove('hidden');
     printView.classList.add('hidden');
     btnDir.classList.add('active');
-    btnPrint.classList.remove('active');
+    if (btnPrint) btnPrint.classList.remove('active');
   } else {
     dirView.classList.add('hidden');
     printView.classList.remove('hidden');
     btnDir.classList.remove('active');
-    btnPrint.classList.add('active');
+    if (btnPrint) btnPrint.classList.add('active');
   }
+}
+
+const INLINE_TEXT_SELECTOR = [
+  '.cover-header > div', '.cover-badge', '.orange-text', '.cover-desc',
+  '.prepared-for-label', '.prepared-for-val', '.profile-header-title span',
+  '.student-name', '.email-label', '.email-val', '.skill-row-title',
+  '.skill-row-desc', '.exp-title', '.exp-link', '.card-keyword-pill', '.footer-text'
+].join(',');
+
+function applyInlineTextEditing() {
+  const preview = document.getElementById('print-view');
+  if (!preview) return;
+  preview.classList.toggle('inline-text-editing', inlineTextEditing);
+  preview.querySelectorAll(INLINE_TEXT_SELECTOR).forEach(element => {
+    if (inlineTextEditing) {
+      element.setAttribute('contenteditable', 'plaintext-only');
+      element.setAttribute('spellcheck', 'true');
+      if (element.tagName === 'A') element.onclick = event => event.preventDefault();
+    } else {
+      element.removeAttribute('contenteditable');
+      element.removeAttribute('spellcheck');
+      if (element.tagName === 'A') element.onclick = null;
+    }
+  });
+}
+
+function toggleInlineTextEditing() {
+  inlineTextEditing = !inlineTextEditing;
+  if (inlineTextEditing && currentView !== 'print') switchView('print');
+  applyInlineTextEditing();
+  const button = document.getElementById('btn-edit-text');
+  if (button) {
+    button.classList.toggle('active', inlineTextEditing);
+    button.textContent = inlineTextEditing ? 'Finish Editing' : 'Edit Text';
+  }
+  showImportToast(
+    inlineTextEditing
+      ? 'Text editing is on. Click any highlighted text and type your replacement.'
+      : 'Text editing finished. You can now save the brochure as PDF.',
+    'success'
+  );
 }
 
 // Trigger PDF print dialog
@@ -1074,7 +1137,7 @@ function renderPrintPreview(students) {
 
   // Define total cover count & stream description based on students filtered
   const count = students.length;
-  let coverStreamTitle = "AI & IoT";
+  let coverStreamTitle = "All Streams";
   let coverDesc = `${count} graduating specialists in artificial intelligence, internet of things, and embedded systems — ready to contribute from day one.`;
   
   const streamSelect = document.getElementById('filter-stream').value;
@@ -1085,6 +1148,18 @@ function renderPrintPreview(students) {
     coverStreamTitle = "AI & Data Analytics";
     coverDesc = `${count} graduating specialists in machine learning, data science, and applied analytics — ready to contribute from day one.`;
   }
+
+  const visibleStreams = [...new Set(students.flatMap(getStudentStreams))];
+  if (streamSelect === 'all' && visibleStreams.length === 1) {
+    coverStreamTitle = visibleStreams[0];
+  }
+  if (streamSelect !== 'all' &&
+      streamSelect !== 'IOT and Embedded Systems' &&
+      streamSelect !== 'AI and Data Analytics') {
+    coverStreamTitle = streamSelect;
+  }
+  const manualFrontPageName = document.getElementById('front-page-name')?.value.trim();
+  if (manualFrontPageName) coverStreamTitle = manualFrontPageName;
 
   // 1. PAGE 1: COVER PAGE
   const coverPage = document.createElement('div');
@@ -1101,7 +1176,7 @@ function renderPrintPreview(students) {
       </div>
       <h1 class="cover-title">
         Meet our<br>
-        <span class="orange-text">${coverStreamTitle}</span><br>
+        <span class="orange-text">${escapeHtml(coverStreamTitle)}</span><br>
         talent.
       </h1>
       <p class="cover-desc">${coverDesc}</p>
@@ -1215,6 +1290,7 @@ function renderPrintPreview(students) {
     `;
     container.appendChild(profilePage);
   }
+  if (inlineTextEditing) applyInlineTextEditing();
 }
 
 // Perform both rendering pipelines
