@@ -225,9 +225,49 @@ function processCommand(raw) {
   const text = raw.trim();
   const lower = text.toLowerCase();
 
+  // Add a headed work description after a student's existing entries.
+  const addDescriptionPattern = /^add\s+(?:a\s+)?new\s+description\s+["“](.+?)["”]\s+["“](.+?)["”]\s+(?:to|for)\s+["“](.+?)["”]$/i;
+  let m = text.match(addDescriptionPattern);
+  if (m) {
+    const [, heading, content, nameFrag] = m;
+    const student = findStudentByName(nameFrag.trim());
+    if (!student) return addMessage(`❌ Couldn't find student <strong>"${escapeHtml(nameFrag.trim())}"</strong>.`, 'bot', 'error');
+    student.skills = Array.isArray(student.skills) ? student.skills : [];
+    student.skills.push({ title: heading.trim(), description: content.trim() });
+    persistStudentEdits(student);
+    filterData();
+    return addMessage(`✅ Added <strong>${escapeHtml(heading.trim())}</strong> after ${escapeHtml(student.name)}'s existing work.`, 'bot', 'success');
+  }
+
+  const missingHeadingPattern = /^add\s+(?:a\s+)?new\s+description\s+["“](.+?)["”]\s+(?:to|for)\s+["“](.+?)["”]$/i;
+  if (missingHeadingPattern.test(text)) {
+    return addMessage('⚠️ Please include both a heading and description:<br><strong>\'Add a new description "Heading" "Content" to "Student Name"\'</strong>', 'bot', 'error');
+  }
+
+  // Remove a work entry by student name and matching content.
+  const removeContentPattern = /^remove\s+["“](.+?)["”]\s+["“](.+?)["”]$/i;
+  m = text.match(removeContentPattern);
+  if (m) {
+    const [, nameFrag, content] = m;
+    const student = findStudentByName(nameFrag.trim());
+    if (!student) return addMessage(`❌ Couldn't find student <strong>"${escapeHtml(nameFrag.trim())}"</strong>.`, 'bot', 'error');
+    const needle = content.trim().toLowerCase();
+    const skills = Array.isArray(student.skills) ? student.skills : [];
+    const before = skills.length;
+    student.skills = skills.filter(skill =>
+      !`${skill.title || ''} ${skill.description || ''}`.toLowerCase().includes(needle)
+    );
+    if (student.skills.length === before) {
+      return addMessage(`⚠️ No work matching <strong>"${escapeHtml(content.trim())}"</strong> was found for ${escapeHtml(student.name)}.`, 'bot', 'error');
+    }
+    persistStudentEdits(student);
+    filterData();
+    return addMessage(`✅ Removed the matching content from <strong>${escapeHtml(student.name)}</strong>.`, 'bot', 'success');
+  }
+
   // ── Pattern: Change/Fix/Set/Update [name]'s [field] to [value]
   const changePattern = /^(?:change|fix|set|update|correct)\s+(.+?)(?:'s|'s|s)?\s+(name|email|linkedin|github|keyword[s]?|skill[s]?)\s+to\s+(.+)$/i;
-  let m = text.match(changePattern);
+  m = text.match(changePattern);
   if (m) {
     const [, nameFrag, field, value] = m;
     const student = findStudentByName(nameFrag.trim());
@@ -308,6 +348,8 @@ function processCommand(raw) {
   // Fallback
   addMessage(`🤔 I didn't understand that. Try something like:<br>
     <strong>"Change [name]'s email to ..."</strong><br>
+    <strong>'Add a new description "Heading" "Content" to "Student Name"'</strong><br>
+    <strong>'Remove "Student Name" "content"'</strong><br>
     <strong>"Add skill [skill] to [name]"</strong><br>
     <strong>"Show [name]"</strong>`, 'bot', 'error');
 }
