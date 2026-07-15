@@ -1,0 +1,1464 @@
+[
+  {
+    "id": 2,
+    "name": "Abel Thomas",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "abelthomas1212@gmail.com",
+    "photo_url": "assets/formal_photos/student_2.png",
+    "photo_id": "126QcDoohkTF7kVo48F0c0eP_BWnLNh3y",
+    "linkedin": "https://www.linkedin.com/in/abel-thomas-804714372/",
+    "github": "https://github.com/abelthomas1414",
+    "skills": [
+      {
+        "title": "FPGA Prototyping using Verilog HDL",
+        "description": ""
+      },
+      {
+        "title": "Embedded Systems & Machine Learning",
+        "description": ""
+      }
+    ],
+    "keywords": [
+      "FPGA",
+      "Machine Learning",
+      "Embedded Systems"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Abhinand v",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "abhinandv2407@gmail.com",
+    "photo_url": "assets/formal_photos/student_3.png",
+    "photo_id": "1yakM7ldjP2gUvqV40KZW6d2x7d40WwxT",
+    "linkedin": "https://www.linkedin.com/in/abhinand-v-97345a41b",
+    "github": "https://github.com/Abhinandv07",
+    "skills": [
+      {
+        "title": "Embedded Systems & Firmware Development",
+        "description": "Technologies & Tools: Arduino, Raspberry Pi, Embedded C."
+      },
+      {
+        "title": "IoT System Design & Hardware Integration",
+        "description": "Technologies & Tools: Sensors, Actuators, Serial Communication."
+      },
+      {
+        "title": "Computer Vision & Edge AI for Embedded Applications",
+        "description": "Technologies & Tools: OpenCV, YOLO, Python."
+      }
+    ],
+    "keywords": [
+      "Raspberry Pi",
+      "python",
+      "pcb designing",
+      "sensor interfacing and iot"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Abhinav TN",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "abhinavtn166@gmail.com",
+    "photo_url": "assets/formal_photos/student_4.png",
+    "photo_id": "1yLoPkZ43ii6nYOIOo3fsxme8GWhqVVZe",
+    "linkedin": "https://www.linkedin.com/in/abhinav-tn-399bb8338/",
+    "github": "https://github.com/AbhinavTN010",
+    "skills": [
+      {
+        "title": "Edge AI & TinyML",
+        "description": "Experience with Edge Impulse, and deploying machine learning models on embedded devices."
+      },
+      {
+        "title": "Embedded Systems & IoT",
+        "description": "Hands-on experience with ESP32-S3, Arduino, sensor interfacing, and embedded firmware development."
+      },
+      {
+        "title": "Designed embedded IoT solutions",
+        "description": "with Ml-based prediction for intelligent food quality monitoring."
+      }
+    ],
+    "keywords": [
+      "Basic knowledge of Python programming gained through coursework",
+      "Hackerrank practice",
+      "and the Intel AI course."
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Adithyan V Satheesan",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "adithyanvs393@gmail.com",
+    "photo_url": "assets/formal_photos/student_6.jpg",
+    "photo_id": "1kZ9qyQJF49TdFIpPgunSqA8Lf5nYWQ5Y",
+    "linkedin": "https://www.linkedin.com/in/adithyan-v-satheesan-065840322/",
+    "github": "https://github.com/Adithyan002",
+    "skills": [
+      {
+        "title": "Embedded Hardware & PCB Design",
+        "description": "Hands-on experience with Arduino prototyping, sensor integration, and routing custom PCBs to translate circuit concepts into physical hardware."
+      },
+      {
+        "title": "IoT & Automation Systems",
+        "description": "Designed and implemented IoT projects using microcontrollers to manage real-time motion sensing elements and automate electromechanical dispenser mechanisms."
+      },
+      {
+        "title": "AIoT & Project Prototyping",
+        "description": "Capable of building functional hardware from concept to prototype by writing embedded firmware and deploying smart AIoT applications."
+      }
+    ],
+    "keywords": [
+      "Embedded Systems",
+      "IoT",
+      "PCB Design",
+      "Arduino",
+      "Automation",
+      "Hardware Interfacing"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Alan T F",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "alantf285@gmail.com",
+    "photo_url": "assets/formal_photos/student_7.jpg",
+    "photo_id": "1qz1bvsyHNxhHC9VZO_4m1eF0gkbVsbZW",
+    "linkedin": "https://www.linkedin.com/in/alan-t-f-0910b4373",
+    "github": "",
+    "skills": [
+      {
+        "title": "Autonomous Robotics & Systems Engineering",
+        "description": ""
+      },
+      {
+        "title": "loT Development",
+        "description": "Designed and developed sensor-based loT solutions for real-time monitoring, data collection, and intelligent automation."
+      }
+    ],
+    "keywords": [
+      "Sensors"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Albert Biju",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "albertbiju04@gmail.com",
+    "photo_url": "assets/formal_photos/student_8.png",
+    "photo_id": "1c_yukVd_11UgSRBfmylhRcftaxi9Mqs3",
+    "linkedin": "https://www.linkedin.com/in/albert-biju-568856411",
+    "github": "https://github.com/albertbiju04-creator",
+    "skills": [
+      {
+        "title": "Embedded Systems",
+        "description": "Designed and implemented embedded system projects using Arduino, ESP32, and sensors, focusing on automation, hardware interfacing, and real-world applications."
+      },
+      {
+        "title": "Project Development",
+        "description": "Planned, designed, and developed innovative engineering projects from concept to prototype, emphasizing practical and user-focused solutions."
+      }
+    ],
+    "keywords": [
+      "Embedded Systems",
+      "Internet of Things (IoT)",
+      "VLSI Fundamentals",
+      "Python",
+      "C Programming",
+      "Arduino"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Alfin Anto",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "alfinanto734@gmail.com",
+    "photo_url": "assets/formal_photos/student_9.png",
+    "photo_id": "1EjtXW7yMbbaEb8na2eWJLidKKF8hUcl6",
+    "linkedin": "https://www.linkedin.com/in/alfin-anto-76431629b",
+    "github": "https://github.com/Alfin-anto-web/Alfin-anto-web.github.io.git",
+    "skills": [
+      {
+        "title": "PCB Design",
+        "description": ""
+      },
+      {
+        "title": "Embedded Systems Development",
+        "description": "Hands-on experience in designing and developing embedded systems using Arduino Uno and ESP32 through academic and project-based projects. Experienced in sensor interfacing, actuator control, embedded programming, and hardware-software integration."
+      },
+      {
+        "title": "FPGA Prototyping using verilog HDL",
+        "description": ""
+      }
+    ],
+    "keywords": [
+      "embedded systems",
+      "pcb design",
+      "fpga prototyping"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Angith R V",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "angithvalsan@gmail.com",
+    "photo_url": "assets/formal_photos/student_10.jpg",
+    "photo_id": "1qlLIFJO1f2Rh-IZSJreRz2un9NzPw1Xl",
+    "linkedin": "https://www.linkedin.com/in/angith-valsan-a7b8692a1",
+    "github": "https://github.com/angithvalsan-ux",
+    "skills": [
+      {
+        "title": "Embedded Programming & Hardware Interfacing",
+        "description": "This skill involves writing code to control microcontrollers and interface with physical electronic components."
+      },
+      {
+        "title": "Telecommunication Routing & Network Infrastructure (BSNL)",
+        "description": "This skill focuses on understanding how data packets travel across wide-area communication networks."
+      },
+      {
+        "title": "Python-Driven Data Science & Firmware Scripting",
+        "description": "This skill bridges the gap between hardware data collection and high-level software analysis using programming languages like Python."
+      }
+    ],
+    "keywords": [
+      "Python",
+      "Telecommunications",
+      "Microcontrollers"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Anjalo Shone",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "anjaloshone@gmail.com",
+    "photo_url": "assets/formal_photos/student_11.jpeg",
+    "photo_id": "1eYxCPE_4okfSTJ1qlsqTUf9yXOWK48Bt",
+    "linkedin": "https://www.linkedin.com/in/anjalo-shone-273715372",
+    "github": "https://github.com/anjaloshone",
+    "skills": [
+      {
+        "title": "Embedded AI",
+        "description": "Developed intelligent embedded applications by integrating machine learning models with edge devices for real-time decision-making."
+      },
+      {
+        "title": "Edge AI Development",
+        "description": "Built and deployed AI solutions using Edge Impulse for efficient data processing and inference on resource-constrained devices."
+      },
+      {
+        "title": "Virtual Development Environments",
+        "description": "Utilized Virtual Machines and development tools such as Visual Studio to design, test, and optimize embedded applications."
+      }
+    ],
+    "keywords": [
+      "Machine Learning",
+      "Embedded AI",
+      "Edge AI",
+      "Virtualization",
+      "Visual Studio",
+      "IoT Development"
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Anjima N.R",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "anjimanr29@gmail.com",
+    "photo_url": "assets/formal_photos/student_12.jpeg",
+    "photo_id": "14L7BkCgaD0IXSRiE4iobr0-lEmUMn8dl",
+    "linkedin": "https://www.linkedin.com/in/anjima-n-r-7231682a1",
+    "github": "https://github.com/anjima123702-oss",
+    "skills": [
+      {
+        "title": "Intelligent Edge Systems",
+        "description": "Designed and implemented AI-enabled embedded solutions capable of processing data and making decisions at the edge."
+      },
+      {
+        "title": "Machine Learning Deployment",
+        "description": "Applied Edge Impulse and related tools to train, optimize, and deploy machine learning models on embedded platforms."
+      },
+      {
+        "title": "Software Development Environments",
+        "description": "Leveraged Virtual Machines and Visual Studio for application development, testing, debugging, and system integration."
+      }
+    ],
+    "keywords": [
+      "Embedded AI",
+      "Edge Computing",
+      "Edge Impulse",
+      "Visual Studio",
+      "Virtual Machines",
+      "AIoT"
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Anliya Bosco",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "anliya135bosco@gmail.com",
+    "photo_url": "assets/formal_photos/student_13.png",
+    "photo_id": "1mJkypCmMzLyN6ufdmZbQuyWBmXKxJx2_",
+    "linkedin": "https://www.linkedin.com/in/anliya-bosco-9bb3b1311",
+    "github": "https://github.com/anliya123000-design",
+    "skills": [
+      {
+        "title": "Embedded system development",
+        "description": "Hands-on experience in embedded systems development using Arduino Uno, Arduino R3, ESP32, and Raspberry Pi. Developed multiple embedded applications integrating sensors, actuators, and microcontrollers using Embedded C."
+      },
+      {
+        "title": "Iot development and cloud integration",
+        "description": "Designed and developed IoT-based projects using Blynk and Arduino IoT Cloud. Familiar with communication protocols including UART, I2C, SPI, HTTP, and MQTT for device connectivity and data communication."
+      },
+      {
+        "title": "Real time embedded systems",
+        "description": "Completed a FreeRTOS-based embedded project implementing multitasking through multiple concurrent tasks for efficient real-time operation and task scheduling."
+      }
+    ],
+    "keywords": [
+      "RTOS",
+      "IOT",
+      "Blynk",
+      "UART",
+      "esp32",
+      "Arduino r3"
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Anncis Thomas",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "anncisthomas1047@gmail.com",
+    "photo_url": "assets/formal_photos/student_14.jpg",
+    "photo_id": "1WlFTK-ry1CtIErNz5eQihdriEeDxrDsV",
+    "linkedin": "https://www.linkedin.com/in/anncis-thomas-a1096b303",
+    "github": "https://github.com/anncisthomas",
+    "skills": [
+      {
+        "title": "Embedded Programming",
+        "description": "Programmed embedded systems using C/C++ (Arduino framework) to control hardware peripherals, acquire sensor data, and implement efficient embedded logic for automation and intelligent applications."
+      },
+      {
+        "title": "ROS Robotics Development",
+        "description": "Internship experience in Robot Operating System (ROS), including sensor integration, motion control, and robotics simulation."
+      },
+      {
+        "title": "Raspberry Pi & IoT",
+        "description": "Development - Experience with Raspberry Pi for IoT applications, embedded programming, and hardware prototyping."
+      }
+    ],
+    "keywords": [
+      "Python",
+      "programming in c",
+      "iot",
+      "Arduino",
+      "raspberry Pi 5",
+      "pcb design"
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Anold c aju",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "anoldaju10@gmail.com",
+    "photo_url": "assets/formal_photos/student_15.png",
+    "photo_id": "1NDETH6esePI3MIe3kkDS3V9jCuda6xvI",
+    "linkedin": "https://www.linkedin.com/in/anold-aju-1377b5372",
+    "github": "https://github.com/anoldaju10-byte",
+    "skills": [
+      {
+        "title": "Embedded Programming",
+        "description": "Programmed embedded systems using C/C++ (Arduino framework) to control hardware peripherals, acquire sensor data, and implement efficient embedded logic for automation and intelligent applications."
+      },
+      {
+        "title": "designed basic PCBs for embedded applications",
+        "description": ""
+      },
+      {
+        "title": "Embedded Systems & IoT",
+        "description": "Hands-on experience with ESP32-S3, Arduino, sensor interfacing, raspberry Pi 5, ros."
+      }
+    ],
+    "keywords": [
+      "Python",
+      "programming in c",
+      "iot",
+      "Arduino",
+      "raspberry Pi 5",
+      "pcb design"
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Anosh CS",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "anoshsatheesh@gmail.com",
+    "photo_url": "assets/formal_photos/student_16.png",
+    "photo_id": "1HSq-ADvBAy3I_T2XvW3qkjoszK3gyqp4",
+    "linkedin": "https://www.linkedin.com/in/anosh-cs-b4131927b/",
+    "github": "https://github.com/anosh07",
+    "skills": [
+      {
+        "title": "Embedded C Programming",
+        "description": "Developed embedded firmware using Embedded C and C++ for Arduino and ESP32-based microcontrollers. Experienced in sensor interfacing, GPIO, ADC, PWM, interrupt handling, and real-time hardware control for embedded applications."
+      },
+      {
+        "title": "IoT & Industrial IoT",
+        "description": "Developed IoT and IIoT-based embedded solutions by integrating microcontrollers, sensors, and cloud platforms for real-time monitoring, remote control, and data acquisition using MQTT and Adafruit IO. Completed the NPTEL course on IoT and Industrial IoT (IIoT), strengthening knowledge of connected systems, industrial communication, smart automation, cloud integration, and industrial IoT applications."
+      },
+      {
+        "title": "PCB Design & Hardware",
+        "description": "Prototyping - Designed, fabricated, assembled, and tested custom PCB prototypes for embedded applications. Experienced in schematic design, PCB layout, soldering, hardware integration, debugging, and prototype validation."
+      }
+    ],
+    "keywords": [
+      "Robotics",
+      "PLC & Scada"
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Aravind Krishna C A",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "aravindh6341@gmail.com",
+    "photo_url": "assets/formal_photos/student_17.jpg",
+    "photo_id": "1DJNq0OJVduNlNTEwDzEAB8DhUr8xa5vs",
+    "linkedin": "https://www.linkedin.com/in/aravind-krishna-c-a-504605297",
+    "github": "https://github.com/aravindhkrishna34892-alt",
+    "skills": [
+      {
+        "title": "Cloud IoT Dashboard Integration",
+        "description": "Connecting embedded devices to a cloud platform (e.g., Blynk) via REST APIs to remotely monitor device status and send real-time notifications."
+      },
+      {
+        "title": "Sensor Data Analysis",
+        "description": "worked with real-time sensor data ingestion for rehabilitation monitoring."
+      },
+      {
+        "title": "Data Analysis on Sensor",
+        "description": "Datasets - Can apply exploratory data analysis to logged sensor/telemetry data from IoT devices."
+      }
+    ],
+    "keywords": [
+      "Python",
+      "embedded C",
+      "Cloud IoT Dashboard Integration",
+      "Sensor Integration",
+      "Serial Communication (UART)"
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Arya Nandha P P",
+    "raw_stream": "AI and Data Analytics & IOT and Embedded Systems",
+    "streams": [
+      "AI and Data Analytics",
+      "IOT and Embedded Systems"
+    ],
+    "email": "nandhaa659@gmail.com",
+    "photo_url": "assets/formal_photos/student_18.jpg",
+    "photo_id": "1LR6ncZV3F8yGz7Uani8OOsvCTD_-K_5Z",
+    "linkedin": "https://www.linkedin.com/in/arya-nandha-114404293",
+    "github": "https://github.com/AryaNandha005",
+    "skills": [
+      {
+        "title": "Python Programming",
+        "description": "Implemented AI algorithms and handled data processing for the project."
+      },
+      {
+        "title": "Machine Learning",
+        "description": "Developed predictive models using Python for food spoilage detection."
+      },
+      {
+        "title": "Data Analytics",
+        "description": "Analyzed and preprocessed sensor data to improve prediction accuracy."
+      }
+    ],
+    "keywords": [
+      "machine learning",
+      "python syntax",
+      "data analytics"
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Benadit Biju",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "benaditbiju10@gmail.com",
+    "photo_url": "assets/formal_photos/student_19.png",
+    "photo_id": "1WRybsEf6a7h5DKjrkuhOQWhOE5ql4VhC",
+    "linkedin": "https://linkedin.com/in/benadit-biju-4b7911285",
+    "github": "https://github.com/benadit-biju",
+    "skills": [
+      {
+        "title": "Embedded Systems -Designed and",
+        "description": "developed embedded solutions by integrating microcontrollers, sensors, actuators, and communication protocols to build intelligent and real-time hardware systems."
+      },
+      {
+        "title": "Internet of Things -Built",
+        "description": "IoT-enabled applications for remote monitoring, automation, cloud connectivity, and real-time data communication using wireless technologies."
+      },
+      {
+        "title": "PCB Design - Designed",
+        "description": "and developed PCB layouts using Altium Designer, KiCad, and EasyEDA, including schematic capture, component placement, PCB routing."
+      }
+    ],
+    "keywords": [
+      "Embedded Systems",
+      "Internet of Things (IoT)",
+      "ESP8266",
+      "Microcontrollers",
+      "Firebase",
+      "Hardware Integration"
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Benedict P Martin",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "benedictpmartin2005@gmail.com",
+    "photo_url": "assets/formal_photos/student_20.jpeg",
+    "photo_id": "1znVmWjYu6ck5U9JCUGf3SA8egiLNuzfx",
+    "linkedin": "https://www.linkedin.com/in/benedict-p-martin-a7a751362",
+    "github": "https://github.com/benedictpmartin123",
+    "skills": [
+      {
+        "title": "Embedded C Programming Strong",
+        "description": "understanding of Embedded C programming for developing firmware on microcontrollers. Experienced in writing efficient, memory-optimized code for real-time embedded applications."
+      },
+      {
+        "title": "Wireless Communication Protocols Experienced",
+        "description": "with Wi-Fi, Bluetooth, MQTT, HTTP, and REST APIs for reliable communication between embedded devices and cloud servers."
+      },
+      {
+        "title": "PCB Design & Schematic",
+        "description": "Capture Designed professional PCB layouts using KiCad and EasyEDA, including schematic creation, component selection, routing, and design rule checking."
+      }
+    ],
+    "keywords": [
+      "Embedded C",
+      "Iot",
+      "Hardware Development",
+      "PCB Design",
+      "Hardware Debugging",
+      "Git"
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Bhavya P",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "bhavyaparakkal05@gmail.com",
+    "photo_url": "assets/formal_photos/student_21.jpeg",
+    "photo_id": "1-mx25-Gbr2v43jmJSIU58cKYXvlRarEU",
+    "linkedin": "https://www.linkedin.com/in/bhavya-pramod-94b996330",
+    "github": "https://github.com/BhavyaPramod",
+    "skills": [
+      {
+        "title": "C Programming",
+        "description": "Good understanding of C programming concepts, including functions, arrays, pointers, and structured programming. Used C for embedded applications and academic coursework."
+      },
+      {
+        "title": "Python",
+        "description": "Basic knowledge of Python with experience gained through coursework and the NPTEL Python for Data Science certification. Comfortable writing simple programs and solving basic problems."
+      },
+      {
+        "title": "IoT & Automation",
+        "description": "Hands-on exposure to automation projects such as Smart Home Automation and Automatic Street Light systems, integrating sensors and control logic."
+      }
+    ],
+    "keywords": [
+      "C Programming",
+      "Python (Basic)",
+      "MATLAB",
+      "Embedded Systems (Basic)",
+      "Communication Skills",
+      "Presentation Skills"
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Ciljoliya",
+    "raw_stream": "AI and Data Analytics & IOT and Embedded Systems",
+    "streams": [
+      "AI and Data Analytics",
+      "IOT and Embedded Systems"
+    ],
+    "email": "ciljoliya@gmail.com",
+    "photo_url": "assets/formal_photos/student_22.jpeg",
+    "photo_id": "1MLSSBpyPiptrXfz431IDuTllFeXKoOiV",
+    "linkedin": "https://www.linkedin.com/in/ciljo-liya-66299b333",
+    "github": "https://github.com/ciljo123706-eng",
+    "skills": [
+      {
+        "title": "EEG Signal Processing",
+        "description": "Processes brain signals for AIbased analysis."
+      },
+      {
+        "title": "Python - Programming language",
+        "description": "for AI, data analytics, and software development."
+      },
+      {
+        "title": "Machine Learning - Develops",
+        "description": "models that learn patterns from data."
+      }
+    ],
+    "keywords": [
+      "EEG Signal Processing",
+      "Python",
+      "Machine Learning"
+    ]
+  },
+  {
+    "id": 23,
+    "name": "Devadath PS",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "devadathps0@gmail.com",
+    "photo_url": "assets/formal_photos/student_23.png",
+    "photo_id": "1lvnbBNS60SetN-kk_ZY93g_YNnOiXH2j",
+    "linkedin": "https://www.linkedin.com/in/devadath-ps-324898298",
+    "github": "https://github.com/devadathps0",
+    "skills": [
+      {
+        "title": "Embedded Programming",
+        "description": "Programmed embedded systems using C/C++ (Arduino framework) to control hardware peripherals, acquire sensor data, and implement efficient embedded logic for automation and intelligent applications."
+      },
+      {
+        "title": "Sensor Interfacing",
+        "description": "Integrated various sensors with embedded platforms to collect, process, and transmit real-time data for monitoring and automation applications, supporting IoT-based system development."
+      },
+      {
+        "title": "Hardware - Software Integration",
+        "description": "Integrated embedded hardware with software applications to enable seamless communication between sensors, microcontrollers, and AI models, particularly in the EEG-Based Brain Computing Assistive System and Smart Desk Assistant."
+      }
+    ],
+    "keywords": [
+      "Embedded Programming",
+      "Sensor Interfacing",
+      "Hardware - Software Integration"
+    ]
+  },
+  {
+    "id": 24,
+    "name": "Gladwin Sebastian",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "gladwinsebastian11@gmail.com",
+    "photo_url": "assets/formal_photos/student_24.png",
+    "photo_id": "19T8upRl_n0dbERBvcSMzvW7PCGbsaFH6",
+    "linkedin": "https://www.linkedin.com/in/gladwin-sebastian-691448374",
+    "github": "https://github.com/gladwinSebastian-alt",
+    "skills": [
+      {
+        "title": "Experienced in developing IoT-based",
+        "description": "applications using ESP32 microcontrollers, sensor networks, and Firebase for real-time cloud synchronization. Built smart monitoring and access control systems for industrial and security applications."
+      },
+      {
+        "title": "designed basic PCBs for embedded applications",
+        "description": ""
+      },
+      {
+        "title": "Embedded Systems & IoT",
+        "description": "Hands-on experience with ESP32-S3, Arduino, sensor interfacing, raspberry Pi 5, ros."
+      }
+    ],
+    "keywords": [
+      "Python",
+      "programming in c",
+      "iot",
+      "Arduino",
+      "raspberry Pi 5",
+      "pcb design"
+    ]
+  },
+  {
+    "id": 25,
+    "name": "ISHAL R S",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "ishalrs06@gmail.com",
+    "photo_url": "assets/formal_photos/student_25.jpeg",
+    "photo_id": "1kJ7YxE7kiImh-43qhByPY-aNCTmVGdlT",
+    "linkedin": "https://www.linkedin.com/in/ishal-r-s-258300365",
+    "github": "https://github.com/ishalrs06",
+    "skills": [
+      {
+        "title": "PCB Design & Embedded",
+        "description": "Systems - Trained in PCB design, circuit layout, and embedded hardware development through hands-on workshop experience."
+      },
+      {
+        "title": "Internet of Things (IoT) & 5G Communications",
+        "description": "Completed an internship and gained practical knowledge of IoT devices, wireless communication, and sensor integration."
+      },
+      {
+        "title": "Arduino-Based System Design",
+        "description": "Experience in designing and implementing Arduino-based hardware projects for real-world applications."
+      }
+    ],
+    "keywords": [
+      "Arduino",
+      "EasyEDA",
+      "IoT & 5G Communications",
+      "PCB Design"
+    ]
+  },
+  {
+    "id": 26,
+    "name": "Indulakshmi K J",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "indulakshmikj2002@gmail.com",
+    "photo_url": "assets/formal_photos/student_26.jpeg",
+    "photo_id": "1LGMy8a2sNFT8QgSBb8yFljkjbbpPtMs-",
+    "linkedin": "https://www.linkedin.com/in/indulakshmi-k-j-2b87792b5",
+    "github": "https://github.com/indulakshmikj2002-ship-it",
+    "skills": [
+      {
+        "title": "Python for Data Science",
+        "description": "Proficient in using Python for data analysis, data visualization, data preprocessing, and basic machine learning."
+      },
+      {
+        "title": "PCB Designing, Schematic Capture",
+        "description": "PCB Layout,PCB Printing, Soldering, PCB Testing, Electronic Circuit Design."
+      },
+      {
+        "title": "Arduino Uno, Hardware Interfacing",
+        "description": "Embedded C, Sensor Integration, PCB Designing, Circuit."
+      }
+    ],
+    "keywords": [
+      "Arduino",
+      "Python",
+      "C / C++",
+      "PCB Design",
+      "Machine Learning",
+      "Sensors"
+    ]
+  },
+  {
+    "id": 27,
+    "name": "JITHU JOJU",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "jojujithu915@gmail.com",
+    "photo_url": "assets/formal_photos/student_27.png",
+    "photo_id": "1C_JSeo4q6HNw4Ze2u8kJ4h3KF-JkUj_F",
+    "linkedin": "https://www.linkedin.com/in/jithu-joju-1a5586298/",
+    "github": "https://github.com/jithu5-glitch",
+    "skills": [
+      {
+        "title": "PCB Design & Embedded",
+        "description": "Systems - Trained in PCB design, circuit layout, and embedded hardware development through hands-on workshop experience."
+      },
+      {
+        "title": "Raspberry Pi & IoT",
+        "description": "Development - Experience with Raspberry Pi for IoT applications, embedded programming, and hardware prototyping."
+      },
+      {
+        "title": "ROS Robotics Development",
+        "description": "Internship experience in Robot Operating System (ROS), including sensor integration, motion control, and robotics simulation."
+      }
+    ],
+    "keywords": [
+      "PCB Design",
+      "Embedded Systems",
+      "Raspberry Pi",
+      "IoT",
+      "ROS",
+      "Robotics"
+    ]
+  },
+  {
+    "id": 28,
+    "name": "Jovin vinod",
+    "raw_stream": "AI and Data Analytics & IOT and Embedded Systems",
+    "streams": [
+      "AI and Data Analytics",
+      "IOT and Embedded Systems"
+    ],
+    "email": "jovinvinod2004@gmail.com",
+    "photo_url": "assets/formal_photos/student_28.jpg",
+    "photo_id": "1o8hkWZ4HEJDX0DfBin4pxmVFEpwZdKsL",
+    "linkedin": "https://www.linkedin.com/in/jovinvinod",
+    "github": "https://github.com/Codejovin",
+    "skills": [
+      {
+        "title": "AI & Machine Learning",
+        "description": "Developed AI and machine learning models to analyze EMG signals, predict upper limb movements, and support intelligent rehabilitation through data-driven decision-making."
+      },
+      {
+        "title": "EMG Signal Processing & Data Analytics",
+        "description": "Processed and analyzed EMG sensor data by extracting meaningful features to improve motion prediction, rehabilitation assessment, and system performance."
+      },
+      {
+        "title": "AI-Based Healthcare System Development",
+        "description": "Designed and implemented an AI-driven rehabilitation system by integrating embedded hardware, sensor data, and machine learning to enable real-time upper limb assistance and recovery monitoring."
+      }
+    ],
+    "keywords": [
+      "Artificial Intelligence (AI)",
+      "Machine Learning",
+      "EMG Signal Processing",
+      "Feature Extraction",
+      "Predictive Analytics",
+      "Real-Time Data Analysis"
+    ]
+  },
+  {
+    "id": 29,
+    "name": "Keerthana k",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "vijikeerthanav@gmail.com",
+    "photo_url": "assets/formal_photos/student_29.jpeg",
+    "photo_id": "1Bod65cFjDBW9lWBx8IGYN3CjRtOIeJI9",
+    "linkedin": "https://www.linkedin.com/in/keerthana-k-27979631a",
+    "github": "https://github.com/keerthana123902-del",
+    "skills": [
+      {
+        "title": "Embedded Software & IoT",
+        "description": "Experienced in embedded programming using C and hardware-software co-design. Developed IoT-based embedded applications using ESP32 for real-time monitoring and smart automation."
+      },
+      {
+        "title": "PCB Design -Experienced in",
+        "description": "PCB schematic design, layout, routing, and hardware validation using EasyEDA for embedded system development."
+      },
+      {
+        "title": "Programming",
+        "description": "Proficient in C and Python programming for embedded systems, algorithm implementation, problem-solving, and application development."
+      }
+    ],
+    "keywords": [
+      "Python",
+      "embedded c programming",
+      "PCB Design",
+      "VS code",
+      "MATLAB"
+    ]
+  },
+  {
+    "id": 30,
+    "name": "Krishnananda. K",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "krishnanandak77@gmail.com",
+    "photo_url": "assets/formal_photos/student_30.jpg",
+    "photo_id": "16Lj0x-h9Ah2Wr56L9Vqql2LoZRZbzXwI",
+    "linkedin": "https://www.linkedin.com/in/krishnananda-k-30139b377",
+    "github": "https://github.com/krishnanandak77-art",
+    "skills": [
+      {
+        "title": "IoT & Embedded Systems",
+        "description": "Integrated ESP8266 for real-time data transmission and automated motor control."
+      },
+      {
+        "title": "Machine Learning - Developed",
+        "description": "an ML model to predict patient recovery stage and optimal rehabilitation exercise angle."
+      },
+      {
+        "title": "EMG Signal Processing - Extracted and analyzed EMG features",
+        "description": "Technologies & Tools: RMS, MAV, VAR, WL, and ZC) for muscle activity assessment."
+      }
+    ],
+    "keywords": [
+      "Iot",
+      "embedded systems",
+      "EMG signal processing"
+    ]
+  },
+  {
+    "id": 31,
+    "name": "Lakshmipriya TS",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "lakshmipriyats2005@gmail.com",
+    "photo_url": "assets/formal_photos/student_31.jpeg",
+    "photo_id": "10iI2AXPyz4fIpg_tFGjYgdBLeect1ytY",
+    "linkedin": "https://www.linkedin.com/in/lakshmipriya-ts-029a72372",
+    "github": "https://github.com/Lakshmipriyats2005-svg",
+    "skills": [
+      {
+        "title": "IoT Development",
+        "description": "Designed and developed an IoT-enabled adaptive thermal control system for real-time temperature monitoring, intelligent airflow regulation, and efficient agricultural produce dehydration."
+      },
+      {
+        "title": "IoT-Based Smart Automation",
+        "description": "Developed an IoT-enabled adaptive thermal control system for agricultural produce dehydration with real-time temperature monitoring and automated control."
+      },
+      {
+        "title": "Embedded System Design",
+        "description": "Built a microcontroller-based embedded solution by integrating temperature sensors, heating elements, and airflow control for efficient and hygienic drying."
+      }
+    ],
+    "keywords": [
+      "Arduino UNO",
+      "MATLAB & Stimulation",
+      "pcb design"
+    ]
+  },
+  {
+    "id": 32,
+    "name": "Leya Rose Shaji",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "leyaroseshaji@gmail.com",
+    "photo_url": "assets/formal_photos/student_32.jpeg",
+    "photo_id": "1XUonMSUufoUSUdODhQN2bEcigo3JKpzw",
+    "linkedin": "https://in.linkedin.com/in/leya-rose-shaji-25100729a",
+    "github": "https://github.com/leyarose12",
+    "skills": [
+      {
+        "title": "Embedded sytems & Programming-Hands",
+        "description": "on experiance in Embedded C, Python, esp32/esp8266, Rasberry Pi, UART, timers, interrupts,RTOS, and hardware debugging."
+      },
+      {
+        "title": "IOT & Sensor Integration",
+        "description": "Developed IoT based projects involving sensor interfacing, cloud platforms,dashboards,real-time monitoring and wireless communication."
+      },
+      {
+        "title": "Applied AI/ML concepts to",
+        "description": "embedded Iot projects, including EMG signal processing, predictive analyctics, and smart automation."
+      }
+    ],
+    "keywords": [
+      "Embedded C",
+      "IoT Development",
+      "ESP32/ESP8266",
+      "Python",
+      "RTOS",
+      "UART"
+    ]
+  },
+  {
+    "id": 33,
+    "name": "Mevil Thomas",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "mevilthomas1121@gmail.com",
+    "photo_url": "assets/formal_photos/student_33.jpeg",
+    "photo_id": "1eR3LdiLMhDSIYLXB3pEhv4PzhpCipBMb",
+    "linkedin": "https://www.linkedin.com/in/mevil-thomas-51b970290",
+    "github": "https://github.com/mevilthomas",
+    "skills": [
+      {
+        "title": "Embedded Systems Development",
+        "description": "Hands-on experience in designing and developing embedded systems using Arduino Uno and ESP32 through academic and project-based projects. Experienced in sensor interfacing, actuator control, embedded programming, and hardware-software integration."
+      },
+      {
+        "title": "PCB Design & 3D Prototyping",
+        "description": "Hands-on experience in PCB design and 3D circuit prototyping using Tinkercad. Skilled in circuit simulation, component integration, and prototype development for embedded system projects."
+      },
+      {
+        "title": "Hardware Prototyping & System Integration",
+        "description": "Experienced in building and testing embedded hardware prototypes by integrating sensors, actuators, communication modules, and power systems into complete working solutions."
+      }
+    ],
+    "keywords": [
+      "Embedded Systems Development",
+      "PCB Design",
+      "Hardware Prototyping",
+      "System Integration",
+      "IoT Development",
+      "Sensor & Actuator Interfacing"
+    ]
+  },
+  {
+    "id": 34,
+    "name": "Mohamed Fazil Lathif K",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "mohamedfazillathif@gmail.com",
+    "photo_url": "assets/formal_photos/student_34.png",
+    "photo_id": "1RaDFOXt3mXEPRVqSLLrUMVunfGZ71Npa",
+    "linkedin": "https://www.linkedin.com/in/mohamed-fazil-lathif-k-89b9352b1/",
+    "github": "https://github.com/mohamedfazillathif-png/fazil.git",
+    "skills": [
+      {
+        "title": "Embedded Systems",
+        "description": "Smart ANC for Hearing Aid project, Microcontroller programming, Hardware interfacing, Sensor integration."
+      },
+      {
+        "title": "IoT Development IoT concepts",
+        "description": "Embedded devices, Wireless communication, Real-time data acquisition."
+      },
+      {
+        "title": "Hardware & Communication Protocols\tUART, I2C",
+        "description": ""
+      }
+    ],
+    "keywords": [
+      "IoT",
+      "Embedded Systems",
+      "Sensors"
+    ]
+  },
+  {
+    "id": 35,
+    "name": "Nancy Sony",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "nancysony29@gmail.com",
+    "photo_url": "assets/formal_photos/student_35.png",
+    "photo_id": "15pKMmoLPCo_MDWHJTYCJqac_W2JXW2Jf",
+    "linkedin": "https://www.linkedin.com/in/nancy-sony-098149412",
+    "github": "https://github.com/nancysony29-code",
+    "skills": [
+      {
+        "title": "Embedded Systems Development",
+        "description": "Developed embedded applications using Arduino Uno, Arduino R3, ESP32, and Raspberry Pi by integrating sensors, actuators, and peripherals. Programmed microcontrollers using Embedded C to build and test real-time embedded systems."
+      },
+      {
+        "title": "Internet of Things (IoT)",
+        "description": "Built IoT-based projects by connecting hardware devices to cloud platforms for real-time monitoring and control."
+      },
+      {
+        "title": "Microcontroller Programming",
+        "description": "Programmed microcontrollers using C and the Arduino IDE to implement sensor-based automation and control systems."
+      }
+    ],
+    "keywords": [
+      "RTOS",
+      "IOT",
+      "Blynk",
+      "UART",
+      "esp32",
+      "Arduino r3"
+    ]
+  },
+  {
+    "id": 36,
+    "name": "Nivedhya shibu",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "nivedhyashibu25@gmail.com",
+    "photo_url": "assets/formal_photos/student_36.jpeg",
+    "photo_id": "1zczwBLo47hrnmivZ77E3_VCzhg6TNEO2",
+    "linkedin": "https://www.linkedin.com/in/nivedhya-shibu-638191299",
+    "github": "https://github.com/nivedhyashibu25",
+    "skills": [
+      {
+        "title": "Internet of Things (IoT) & 5G Communications",
+        "description": "Completed an internship and gained practical knowledge of IoT devices, wireless communication, and sensor integration."
+      },
+      {
+        "title": "PCB Design (EasyEDA)",
+        "description": "Completed a PCB design internship using EasyEDA with hands-on experience in schematic design and PCB layout."
+      },
+      {
+        "title": "Arduino-Based System Design",
+        "description": "Experience in designing and implementing Arduino-based hardware projects for real-world applications."
+      }
+    ],
+    "keywords": [
+      "Arduino",
+      "EasyEDA",
+      "IoT & 5G Communications",
+      "PCB Design"
+    ]
+  },
+  {
+    "id": 37,
+    "name": "Shaun Ajoy",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "shaunajoy946@gmail.com",
+    "photo_url": "assets/formal_photos/student_37.jpg",
+    "photo_id": "1AgNCt2pfjc9MbjiZSBA0zHJmHGb3oP9a",
+    "linkedin": "https://www.linkedin.com/in/shaun-ajoy-879aa729b",
+    "github": "https://github.com/shaunajoy",
+    "skills": [
+      {
+        "title": "IoT and Embedded System",
+        "description": "Experienced in building smart, connected devices. I write code to control hardware like microcontrollers and sensors, and use wireless protocols (like Wi-Fi and Bluetooth) to send that data to the cloud or other devices."
+      },
+      {
+        "title": "Data Analytics",
+        "description": "Analyzed and preprocessed sensor data to improve prediction accuracy."
+      },
+      {
+        "title": "Basic Python Programming",
+        "description": ""
+      }
+    ],
+    "keywords": [
+      "Autonomous Robotics & Systems Engineering"
+    ]
+  },
+  {
+    "id": 38,
+    "name": "Sneha Martin",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "snehamartin24@gmail.com",
+    "photo_url": "assets/formal_photos/student_38.jpeg",
+    "photo_id": "1lFBdlsz0q_JOfKFgPOyDfEhGS4bYjMTA",
+    "linkedin": "https://www.linkedin.com/in/sneha-martin-a35911372",
+    "github": "https://github.com/sneha123908-lgtm",
+    "skills": [
+      {
+        "title": "Embedded Systems Engineering",
+        "description": "Hands-on experience developing automated microcontroller applications using Arduino, sensors, and relays to regulate agricultural dehydration processes."
+      },
+      {
+        "title": "c programming",
+        "description": "Developed structured programs by applying core programming concepts and problem-solving techniques."
+      },
+      {
+        "title": "Cisco Packet Tracer",
+        "description": "Designed, configured, and simulated computer network topologies."
+      }
+    ],
+    "keywords": [
+      "System Testing & Debugging",
+      "Emedded Systems",
+      "Problem Solving"
+    ]
+  },
+  {
+    "id": 39,
+    "name": "Sneha Raju",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "sneharaju067@gmail.com",
+    "photo_url": "assets/formal_photos/student_39.jpg",
+    "photo_id": "1n8g51OVevxtulZbj0Ydw1s1zeMYkg-oG",
+    "linkedin": "https://www.linkedin.com/in/sneha-raju-a7848b313",
+    "github": "https://github.com/Raju-chinnu",
+    "skills": [
+      {
+        "title": "IoT System Development using ESP32 & Firebase",
+        "description": "Experienced in developing IoT-based applications using ESP32 microcontrollers, sensor networks, and Firebase for real-time cloud synchronization. Built smart monitoring and access control systems for industrial and security applications."
+      },
+      {
+        "title": "Embedded Systems Development Skilled",
+        "description": "in Embedded C programming, hardware-software integration, and ESP32-based system design. Developed embedded solutions for hearing aids, face recognition, and industrial safety with a focus on real-time performance and efficient resource utilization."
+      },
+      {
+        "title": "Hardware - Software Integration",
+        "description": "Experienced in integrating embedded hardware with software applications to develop reliable real-time systems. Worked on ESP32-based projects, IoT sensor networks, Firebase cloud connectivity, and signal processing applications to ensure seamless communication between hardware and software components."
+      }
+    ],
+    "keywords": [
+      "Embedded C",
+      "Python",
+      "MATLAB",
+      "ESP32",
+      "Embedded Systems",
+      "IoT"
+    ]
+  },
+  {
+    "id": 40,
+    "name": "VRINDA KUTTIPPALLAM CHANDRAKUMAR",
+    "raw_stream": "AI and Data Analytics & IOT and Embedded Systems",
+    "streams": [
+      "AI and Data Analytics",
+      "IOT and Embedded Systems"
+    ],
+    "email": "vrindakc25@gmail.com",
+    "photo_url": "assets/formal_photos/student_40.jpeg",
+    "photo_id": "1kV9ettyEvU39ueREuKfEBfyRjyoxaMFd",
+    "linkedin": "https://www.linkedin.com/in/vrinda-kuttippallam-chandrakumar-b61765372",
+    "github": "https://github.com/Vrinda25-cool",
+    "skills": [
+      {
+        "title": "Python-Driven Data Exploration",
+        "description": "Building foundational skills in Python programming to write clean code, manipulate basic data structures, and automate simple data tasks."
+      },
+      {
+        "title": "Introduction to Data Insights",
+        "description": "Focused on learning how to read, interpret, and present findings from simple datasets using data-driven logic."
+      },
+      {
+        "title": "Data Literacy & Exploration",
+        "description": "Capable of understanding core Python syntax and logic, with a strong focus on learning how to read, interpret, and find meaning in basic datasets."
+      }
+    ],
+    "keywords": [
+      "Python Syntax",
+      "Logic Structures",
+      "Code Comprehension",
+      "Control Flow"
+    ]
+  },
+  {
+    "id": 41,
+    "name": "Varsha R",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "varsharoshan93@gmail.com",
+    "photo_url": "assets/formal_photos/student_41.jpeg",
+    "photo_id": "1WViHmsOZWqlVWakINQyYssNJT2kCYoY3",
+    "linkedin": "https://www.linkedin.com/in/varsha-robin-559712335",
+    "github": "",
+    "skills": [
+      {
+        "title": "Embedded Hardware & System Design",
+        "description": "Hands-on experience with Arduino, FPGA prototyping, PCB design, and embedded hardware development. Comfortable integrating hardware and software to build innovative automation and monitoring systems."
+      },
+      {
+        "title": "5G & IoT Communication Intern",
+        "description": "Learned 5G architecture, IoT concepts, wireless communication, connected devices, and emerging communication technologies through industry-oriented training."
+      },
+      {
+        "title": "AIoT & Signal Processing",
+        "description": "Worked on smart hearing aid technology using adaptive noise cancellation, combining VS code implementation with signal processing techniques to improve speech clarity."
+      }
+    ],
+    "keywords": [
+      "FPGA Prototyping",
+      "PCB Design",
+      "python(basics)",
+      "IOT and 5g communication",
+      "C(basics)",
+      "MATLAB"
+    ]
+  },
+  {
+    "id": 42,
+    "name": "Vasudev Rejikumar",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "vasudevrejikumar6@gmail.com",
+    "photo_url": "assets/formal_photos/student_42.jpeg",
+    "photo_id": "1fctqwPk5cepNMQ5TDSMA8ybfdyZOYlxk",
+    "linkedin": "https://www.linkedin.com/in/vasudev-rejikumar-1a69502a9",
+    "github": "https://github.com/vasudevReji123",
+    "skills": [
+      {
+        "title": "Embedded Systems",
+        "description": "Designed and implemented embedded system projects using Arduino, ESP32, and sensors, focusing on automation, hardware interfacing, and real-world applications."
+      },
+      {
+        "title": "Embedded Systems",
+        "description": "Designed and implemented embedded system projects using Arduino, ESP32, and sensors, focusing on automation, hardware interfacing, and real-world applications."
+      },
+      {
+        "title": "Project Development",
+        "description": "Planned, designed, and developed innovative engineering projects from concept to prototype, emphasizing practical and user-focused solutions."
+      }
+    ],
+    "keywords": [
+      "Embedded Systems",
+      "Internet of Things (IoT)",
+      "VLSI Fundamentals",
+      "Python",
+      "C Programming",
+      "Arduino"
+    ]
+  },
+  {
+    "id": 43,
+    "name": "YADHUKRISHNA P R",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "yadhukrishna782@gmail.com",
+    "photo_url": "assets/formal_photos/student_43.jpg",
+    "photo_id": "1suOpQ0rZRoQhfX_z1l2Ds7xjl251UzZe",
+    "linkedin": "https://www.linkedin.com/in/yadhu-krishna-4379b02ba",
+    "github": "https://github.com/yadhukrishna1230",
+    "skills": [
+      {
+        "title": "Python for data science",
+        "description": ""
+      },
+      {
+        "title": "PCB design",
+        "description": ""
+      },
+      {
+        "title": "FPGA Prototyping using verilog HDL",
+        "description": ""
+      }
+    ],
+    "keywords": [
+      "Python",
+      "PCB design",
+      "FPGA PROTOTYPING"
+    ]
+  },
+  {
+    "id": 44,
+    "name": "Yadhukrishna EM",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "yadhukannan0022@gmail.com",
+    "photo_url": "assets/formal_photos/student_44.png",
+    "photo_id": "1ALCMPxs6oaEM-KTe_a_ib2MuUfC6aTIe",
+    "linkedin": "https://www.linkedin.com/in/yadhukrishna-em-68b039397",
+    "github": "https://github.com/yadhukrishnaem",
+    "skills": [
+      {
+        "title": "Microcontrollers & Hardware Interfacing",
+        "description": ""
+      },
+      {
+        "title": "IoT Communication & Networking",
+        "description": ""
+      }
+    ],
+    "keywords": [
+      "IoT",
+      "Sensors"
+    ]
+  },
+  {
+    "id": 45,
+    "name": "devadath ps",
+    "raw_stream": "AI and Data Analytics",
+    "streams": [
+      "AI",
+      "Data Analytics"
+    ],
+    "email": "devadathps0@gmail.com",
+    "photo_url": "assets/formal_photos/student_45.png",
+    "photo_id": "1qOWRY-eWTt2Y-A6j3purj5M0S86YkVFg",
+    "linkedin": "https://www.linkedin.com/in/devadath-ps-324898298",
+    "github": "https://github.com/devadathps0",
+    "skills": [
+      {
+        "title": "AI-Powered Signal Intelligence",
+        "description": "Applied machine learning and deep learning techniques in the EEG-Based Brain Computing Assistive System to analyze brainwave signals, perform pattern recognition, and support intelligent assistive technologies."
+      },
+      {
+        "title": "Data Analytics for Intelligent Systems",
+        "description": "Worked with EEG and sensor datasets using Python for data preprocessing, feature extraction, and time-series analysis to improve AI model performance and generate actionable insights."
+      },
+      {
+        "title": "Applied Machine Learning Engineer",
+        "description": "Developed and evaluated LSTM Autoencoder models using TensorFlow and Python for biomedical signal analysis, focusing on anomaly detection and real-time AI applications."
+      }
+    ],
+    "keywords": [
+      "AI-Powered Signal Intelligence",
+      "Data Analytics for Intelligent Systems",
+      "Applied Machine Learning Engineer"
+    ]
+  },
+  {
+    "id": 46,
+    "name": "mohamed shifas",
+    "raw_stream": "IOT and Embedded Systems",
+    "streams": [
+      "IOT and Embedded Systems"
+    ],
+    "email": "mohamedshifasps@gmail.com",
+    "photo_url": "assets/formal_photos/student_46.jpeg",
+    "photo_id": "19DniTulYmfyPVp-4hEKstZSew9eQrQZJ",
+    "linkedin": "https://www.linkedin.com/in/shifas-p-s-270143378",
+    "github": "",
+    "skills": [
+      {
+        "title": "Python,PCB design,FPGA Prototyping",
+        "description": ""
+      },
+      {
+        "title": "Introduction to Data Insights",
+        "description": "Focused on learning how to read, interpret, and present findings from simple datasets using data-driven logic."
+      },
+      {
+        "title": "PCB Designing",
+        "description": "Designed PCB in EasyEDA software and implemented on project. Participated PCB designing competitions."
+      }
+    ],
+    "keywords": [
+      "Embedded Systems",
+      "Internet of Things (IoT)",
+      "VLSI Fundamentals",
+      "Python",
+      "C Programming",
+      "Arduino"
+    ]
+  }
+]

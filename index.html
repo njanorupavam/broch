@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sahrdaya Placement Cell 2026 - AI & IoT Recruitment Brochure</title>
+  <meta name="description" content="Meet our graduating specialists in AI, IoT, and Embedded Systems — prepared by Sahrdaya Placement Cell.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Screen Header (Hidden during Print) -->
+  <header class="main-header no-print">
+    <div class="header-container">
+      <div class="header-top">
+        <div class="brand">
+          <div class="brand-dot"></div>
+          <h1>SAHRDAYA</h1>
+          <span>PLACEMENT CELL &middot; 2026</span>
+        </div>
+        <div class="controls-right">
+          <button id="btn-directory-view" class="btn btn-secondary active" onclick="switchView('directory')">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M4 4h4v4H4V4zm6 0h10v4H10V4zM4 10h4v4H4v-4zm6 0h10v4H10v-4zM4 16h4v4H4v-4zm6 0h10v4H10v-4z"/></svg>
+            Interactive Directory
+          </button>
+          <button id="btn-print-view" class="btn btn-secondary" onclick="switchView('print')">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
+            Brochure Print Preview
+          </button>
+          <button id="btn-clear-photos" class="btn btn-secondary hidden" onclick="clearAllManualEdits()" title="Reset all manual edits and photos">
+            Clear Custom Data
+          </button>
+          <button id="btn-import-xlsx" class="btn btn-secondary" onclick="document.getElementById('xlsx-import-input').click()" title="Import student data from Excel file">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8.5 18l2.29-3.22L8.5 11.5h1.39l1.36 2.08 1.36-2.08H14l-2.29 3.28L14 18h-1.39l-1.36-2.13L9.89 18H8.5z"/></svg>
+            Import XLSX
+          </button>
+          <button id="btn-export-pdf" class="btn btn-primary" onclick="exportToPDF()">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
+            Save as PDF
+          </button>
+        </div>
+      </div>
+
+      <div class="uploaded-files-panel">
+        <div class="uploaded-files-heading">Uploaded XLSX Files</div>
+        <div id="imported-files" class="imported-files" aria-label="Imported Excel files"></div>
+      </div>
+      
+      <!-- Search and Filter Panel -->
+      <div class="filters-panel">
+        <div class="input-group">
+          <label class="input-label" for="search-name">Search Student Name</label>
+          <input type="text" id="search-name" class="search-input" placeholder="Enter student name..." oninput="filterData()">
+        </div>
+        <div class="input-group">
+          <label id="filter-stream-label" class="input-label" for="filter-stream">Stream / Program</label>
+          <select id="filter-stream" class="select-input" onchange="filterData()">
+            <option value="all">All Streams</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label class="input-label" for="search-skill">Search Skill Keywords</label>
+          <input type="text" id="search-skill" class="search-input" placeholder="e.g. PCB, Python, Arduino..." oninput="filterData()">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Interactive Directory View -->
+  <main class="workspace-container">
+    
+    <!-- Directory view (Web display) -->
+    <div id="directory-view" class="web-directory">
+      <!-- Injected dynamically by app.js -->
+    </div>
+
+    <!-- Brochure Print Preview Container (A4 paginated) -->
+    <div id="print-view" class="brochure-preview-container hidden">
+      <!-- Injected dynamically by app.js -->
+    </div>
+
+  </main>
+
+  <!-- Floating Actions for PDF print and assistant -->
+  <div class="floating-actions no-print">
+    <button class="floating-btn" onclick="exportToPDF()" title="Print / Save to PDF">
+      <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
+    </button>
+    <button class="floating-btn assistant-toggle-btn" id="assistant-toggle" onclick="toggleAssistant()" title="Open AI Editor Assistant">
+      <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+    </button>
+  </div>
+
+  <!-- AI Editor Assistant Panel -->
+  <div id="assistant-panel" class="assistant-panel no-print">
+    <div class="assistant-header">
+      <div class="assistant-title">
+        <div class="assistant-dot"></div>
+        <span>Brochure Assistant</span>
+      </div>
+      <button class="assistant-close" onclick="toggleAssistant()">&times;</button>
+    </div>
+    <div class="assistant-hint">
+      <p>Type a correction and I'll apply it. Examples:</p>
+      <ul>
+        <li><em>"Change Abel Thomas's email to xyz@gmail.com"</em></li>
+        <li><em>"Fix Abhinand's LinkedIn to https://linkedin.com/in/..."</em></li>
+        <li><em>"Add skill Python to Abhinav"</em></li>
+        <li><em>"Remove keyword Arduino from Abel"</em></li>
+        <li><em>"Set Abhinand's name to Abhinand V"</em></li>
+      </ul>
+    </div>
+    <div class="assistant-messages" id="assistant-messages"></div>
+    <div class="assistant-input-area">
+      <input type="text" id="assistant-input" class="assistant-input" placeholder="Type a correction..." onkeydown="if(event.key==='Enter') sendAssistantMessage()">
+      <button class="assistant-send" onclick="sendAssistantMessage()">
+        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Crop & Adjust Modal (Screen Only) -->
+  <div id="crop-modal" class="crop-modal-overlay hidden no-print">
+    <div class="crop-modal-container">
+      <div class="crop-modal-header">
+        <h3>Adjust Profile Photo</h3>
+        <button class="crop-close-btn" onclick="closeCropModal()">&times;</button>
+      </div>
+      <div class="crop-modal-body">
+        <div class="crop-viewport-container">
+          <div id="crop-viewport" class="crop-viewport">
+            <img id="crop-preview-img" src="" alt="Preview" style="transform: translate(0px, 0px) scale(1) rotate(0deg);">
+            <div class="crop-mask-square"></div>
+          </div>
+        </div>
+        
+        <div class="crop-controls">
+          <div class="crop-control-group">
+            <label for="crop-zoom-slider">Zoom</label>
+            <div class="slider-wrapper">
+              <input type="range" id="crop-zoom-slider" min="0.67" max="3" step="0.01" value="1" oninput="updateCropTransform()">
+            </div>
+          </div>
+          
+          <div class="crop-control-group">
+            <label for="crop-rotate-slider">Rotate</label>
+            <div class="slider-wrapper">
+              <input type="range" id="crop-rotate-slider" min="0" max="360" step="1" value="0" oninput="updateCropTransform()">
+            </div>
+          </div>
+          
+          <div class="crop-btn-row">
+            <button class="btn btn-secondary" onclick="rotate90()">Rotate 90°</button>
+            <button class="btn btn-secondary" onclick="resetCropTransform()">Reset</button>
+          </div>
+        </div>
+      </div>
+      <div class="crop-modal-footer">
+        <button class="btn btn-secondary" onclick="closeCropModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="applyCrop()">Apply & Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Student Details Modal (Screen Only) -->
+  <div id="edit-modal" class="crop-modal-overlay hidden no-print">
+    <div class="edit-modal-container">
+      <div class="crop-modal-header">
+        <h3>Edit Student Details</h3>
+        <button class="crop-close-btn" onclick="closeEditModal()">&times;</button>
+      </div>
+      <div class="edit-modal-body">
+        <div class="edit-section-label">Basic Info</div>
+        <div class="edit-field-row">
+          <label for="edit-name">Full Name</label>
+          <input type="text" id="edit-name" class="edit-input" placeholder="Student full name">
+        </div>
+        <div class="edit-field-row">
+          <label for="edit-email">Email Address</label>
+          <input type="email" id="edit-email" class="edit-input" placeholder="email@example.com">
+        </div>
+
+        <div class="edit-section-label">Profile Links</div>
+        <div class="edit-field-row">
+          <label for="edit-linkedin">LinkedIn URL</label>
+          <input type="url" id="edit-linkedin" class="edit-input" placeholder="https://linkedin.com/in/username">
+        </div>
+        <div class="edit-field-row">
+          <label for="edit-github">GitHub URL</label>
+          <input type="url" id="edit-github" class="edit-input" placeholder="https://github.com/username">
+        </div>
+
+        <div class="edit-section-label">Skills</div>
+        <div id="edit-skills-list" class="edit-skills-container"></div>
+        <button class="btn btn-secondary edit-add-btn" onclick="addEditSkill()">
+          <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M19 13H13v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+          Add Skill
+        </button>
+
+        <div class="edit-section-label">Keywords (comma separated)</div>
+        <div class="edit-field-row">
+          <label for="edit-keywords">Keywords</label>
+          <input type="text" id="edit-keywords" class="edit-input" placeholder="Python, Arduino, Machine Learning...">
+        </div>
+      </div>
+      <div class="crop-modal-footer">
+        <button class="btn btn-secondary" onclick="closeEditModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="saveEditedStudent()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <input type="file" id="manual-photo-input" accept="image/*" style="display: none;" onchange="handleManualPhotoChange(event)">
+  <input type="file" id="xlsx-import-input" accept=".xlsx,.xls" style="display: none;" onchange="handleXLSXImport(event)">
+  <!-- SheetJS for reading Excel files in-browser -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
