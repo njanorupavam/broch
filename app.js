@@ -885,32 +885,18 @@ function showImportToast(message, type = 'success') {
   }, 4000);
 }
 
-// On document load, fetch student data
+// On document load, start with imported XLSX data only.
 document.addEventListener('DOMContentLoaded', () => {
-  fetch('students_cleaned.json')
-    .then(response => response.json())
-    .then(data => {
-      // Filter out profiles with no skills to avoid empty cards
-      baseStudentsData = data.filter(student => student.skills && student.skills.length > 0);
-      try {
-        const savedImports = JSON.parse(localStorage.getItem(IMPORTED_FILES_KEY) || '[]');
-        importedFiles = Array.isArray(savedImports) ? savedImports : [];
-      } catch (error) {
-        importedFiles = [];
-      }
-      rebuildStudentsFromImports();
-      updateClearButtonVisibility();
-      initCropDragging();
-    })
-    .catch(error => {
-      console.error('Error loading student data:', error);
-      document.getElementById('directory-view').innerHTML = `
-        <div class="empty-state">
-          <h3>Error Loading Data</h3>
-          <p>Please check if students_cleaned.json is present and correctly formatted.</p>
-        </div>
-      `;
-    });
+  baseStudentsData = [];
+  try {
+    const savedImports = JSON.parse(localStorage.getItem(IMPORTED_FILES_KEY) || '[]');
+    importedFiles = Array.isArray(savedImports) ? savedImports : [];
+  } catch (error) {
+    importedFiles = [];
+  }
+  rebuildStudentsFromImports();
+  updateClearButtonVisibility();
+  initCropDragging();
 });
 
 // Switch view between interactive directory and A4 print brochure
