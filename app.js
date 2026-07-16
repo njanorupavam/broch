@@ -94,6 +94,18 @@ function studentIdentity(student) {
   return (student.email || student.name || '').trim().toLowerCase();
 }
 
+// Uploading a workbook is an explicit request to include its students again.
+// Clear matching removal markers before rebuilding from saved imports.
+function restoreImportedStudentDeletions(importedStudents) {
+  const importedIdentities = new Set(importedStudents.map(studentIdentity).filter(Boolean));
+  if (!importedIdentities.size) return;
+  const deletedStudents = readStoredArray(DELETED_STUDENTS_KEY);
+  const remainingDeletions = deletedStudents.filter(identity => !importedIdentities.has(identity));
+  if (remainingDeletions.length !== deletedStudents.length) {
+    localStorage.setItem(DELETED_STUDENTS_KEY, JSON.stringify(remainingDeletions));
+  }
+}
+
 function updateFrontPageName(value) {
   const name = (value || '').trim();
   if (name) localStorage.setItem(FRONT_PAGE_NAME_KEY, name);
@@ -1083,6 +1095,8 @@ function handleXLSXImport(event) {
           added++;
         }
       });
+
+      restoreImportedStudentDeletions(importedStudents);
 
       // Rebuild baseline for future photo resets
       originalStudentsData = studentsData.map(s => {

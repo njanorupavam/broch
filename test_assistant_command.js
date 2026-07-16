@@ -59,3 +59,15 @@ if (!context.studentsData[0].keywords.includes('FPGA Design') ||
 }
 
 console.log('Skill badge command passed:', context.studentsData[0].keywords);
+
+context.storage.deleted = JSON.stringify(['kaasinaathanmp@gmail.com', 'keep@example.com']);
+vm.runInContext(`
+  ${section('function restoreImportedStudentDeletions', 'function updateFrontPageName')}
+  restoreImportedStudentDeletions([{ name: 'KAASINAATHAN MP', email: 'kaasinaathanmp@gmail.com' }]);
+`, context);
+const remainingDeletions = JSON.parse(context.storage.deleted);
+if (remainingDeletions.includes('kaasinaathanmp@gmail.com') || !remainingDeletions.includes('keep@example.com')) {
+  throw new Error(`Import deletion restore failed: ${context.storage.deleted}`);
+}
+
+console.log('Imported student deletion restore passed:', remainingDeletions);
