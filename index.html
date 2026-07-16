@@ -55,6 +55,10 @@
         <div class="input-group">
           <label class="input-label" for="search-name">Search Student Name</label>
           <input type="text" id="search-name" class="search-input" placeholder="Enter student name..." oninput="filterData()">
+          <div class="student-manage-actions">
+            <button type="button" class="btn btn-primary" onclick="openAddStudentModal()">Add Student</button>
+            <button type="button" class="btn btn-danger" onclick="removeSearchedStudent()">Remove Student</button>
+          </div>
         </div>
         <div class="input-group">
           <label id="filter-stream-label" class="input-label" for="filter-stream">Stream / Program</label>
@@ -123,6 +127,34 @@
       <button class="assistant-send" onclick="sendAssistantMessage()">
         <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
       </button>
+    </div>
+  </div>
+
+  <!-- Add Student Modal (Screen Only) -->
+  <div id="add-student-modal" class="crop-modal-overlay hidden no-print">
+    <div class="edit-modal-container">
+      <div class="crop-modal-header">
+        <h3>Add New Student</h3>
+        <button class="crop-close-btn" onclick="closeAddStudentModal()">&times;</button>
+      </div>
+      <div class="edit-modal-body">
+        <div class="edit-field-row">
+          <label for="add-student-name">Full Name</label>
+          <input type="text" id="add-student-name" class="edit-input" placeholder="Student full name">
+        </div>
+        <div class="edit-field-row">
+          <label for="add-student-email">Email Address</label>
+          <input type="email" id="add-student-email" class="edit-input" placeholder="email@example.com">
+        </div>
+        <div class="edit-field-row">
+          <label for="add-student-stream">Stream / Program</label>
+          <input type="text" id="add-student-stream" class="edit-input" placeholder="e.g. VLSI">
+        </div>
+      </div>
+      <div class="crop-modal-footer">
+        <button class="btn btn-secondary" onclick="closeAddStudentModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="saveNewStudent()">Add Student</button>
+      </div>
     </div>
   </div>
 

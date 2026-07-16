@@ -8,6 +8,21 @@ let importedFiles = [];
 let inlineTextEditing = false;
 const IMPORTED_FILES_KEY = 'brochure_imported_xlsx_files_v1';
 const FRONT_PAGE_NAME_KEY = 'brochure_front_page_name_v1';
+const MANUAL_STUDENTS_KEY = 'brochure_manual_students_v1';
+const DELETED_STUDENTS_KEY = 'brochure_deleted_students_v1';
+
+function readStoredArray(key) {
+  try {
+    const value = JSON.parse(localStorage.getItem(key) || '[]');
+    return Array.isArray(value) ? value : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function studentIdentity(student) {
+  return (student.email || student.name || '').trim().toLowerCase();
+}
 
 function updateFrontPageName(value) {
   const name = (value || '').trim();
@@ -108,8 +123,11 @@ function applyImportedStudents(targetStudents, importedStudents) {
 
 function rebuildStudentsFromImports() {
   studentsData = baseStudentsData.map(student => ({ ...student }));
-  loadManualEdits();
   importedFiles.forEach(file => applyImportedStudents(studentsData, file.students || []));
+  applyImportedStudents(studentsData, readStoredArray(MANUAL_STUDENTS_KEY));
+  const deletedStudents = new Set(readStoredArray(DELETED_STUDENTS_KEY));
+  studentsData = studentsData.filter(student => !deletedStudents.has(studentIdentity(student)));
+  loadManualEdits();
   originalStudentsData = studentsData.map(student => ({ ...student }));
   loadManualPhotos();
   refreshStreamFilterOptions();
@@ -192,6 +210,23 @@ function sendAssistantMessage() {
   setTimeout(() => processCommand(text), 200);
 }
 
+// Commands are often copied from the examples with their surrounding quote.
+// Remove that presentation-only wrapper before matching the command grammar.
+function normalizeAssistantCommand(raw) {
+  let text = String(raw || '').trim();
+  const wrappers = [
+    ["'", "'"],
+    ['\u2018', '\u2019'],
+    ['\u2019', '\u2019'],
+    ['`', '`'],
+  ];
+  const wrapper = wrappers.find(([open, close]) =>
+    text.startsWith(open) && text.endsWith(close) && text.length > open.length + close.length
+  );
+  if (wrapper) text = text.slice(wrapper[0].length, -wrapper[1].length).trim();
+  return text;
+}
+
 // Fuzzy name matcher — find best matching student for a name fragment
 function findStudentByName(fragment) {
   const q = fragment.toLowerCase().replace(/[''']/g, '').trim();
@@ -222,7 +257,7 @@ function persistStudentEdits(student) {
 
 // Main command parser
 function processCommand(raw) {
-  const text = raw.trim();
+  const text = normalizeAssistantCommand(raw);
   const lower = text.toLowerCase();
 
   // Add a headed work description after a student's existing entries.
@@ -282,10 +317,22 @@ function processCommand(raw) {
     const [, skillText, nameFrag] = m;
     const student = findStudentByName(nameFrag.trim());
     if (!student) return addMessage(`❌ Couldn't find student <strong>"${nameFrag.trim()}"</strong>.`, 'bot', 'error');
-    student.skills.push({ title: skillText.trim(), description: '' });
+    const skill = skillText.trim();
+    const normalizedSkill = skill.toLowerCase();
+    student.keywords = Array.isArray(student.keywords) ? student.keywords : [];
+    student.skills = Array.isArray(student.skills) ? student.skills : [];
+
+    // Badges are rendered from keywords. Repair matching empty headings that
+    // may have been created by the previous implementation of this command.
+    student.skills = student.skills.filter(entry =>
+      !(!String(entry.description || '').trim() && String(entry.title || '').trim().toLowerCase() === normalizedSkill)
+    );
+    if (!student.keywords.some(keyword => String(keyword).trim().toLowerCase() === normalizedSkill)) {
+      student.keywords.push(skill);
+    }
     persistStudentEdits(student);
     filterData();
-    return addMessage(`✅ Added skill <strong>"${skillText.trim()}"</strong> to <strong>${student.name}</strong>.`, 'bot', 'success');
+    return addMessage(`✅ Added skill badge <strong>"${skill}"</strong> to <strong>${student.name}</strong>.`, 'bot', 'success');
   }
 
   // ── Pattern: Remove skill [skill text] from [name]
@@ -295,12 +342,21 @@ function processCommand(raw) {
     const [, skillText, nameFrag] = m;
     const student = findStudentByName(nameFrag.trim());
     if (!student) return addMessage(`❌ Couldn't find student <strong>"${nameFrag.trim()}"</strong>.`, 'bot', 'error');
-    const before = student.skills.length;
-    student.skills = student.skills.filter(s => !s.title.toLowerCase().includes(skillText.toLowerCase()));
-    if (student.skills.length === before) return addMessage(`⚠️ No skill matching <strong>"${skillText}"</strong> found for ${student.name}.`, 'bot', 'error');
+    const needle = skillText.trim().toLowerCase();
+    student.keywords = Array.isArray(student.keywords) ? student.keywords : [];
+    student.skills = Array.isArray(student.skills) ? student.skills : [];
+    const keywordCount = student.keywords.length;
+    const headingCount = student.skills.length;
+    student.keywords = student.keywords.filter(keyword => String(keyword).trim().toLowerCase() !== needle);
+    student.skills = student.skills.filter(entry =>
+      !(!String(entry.description || '').trim() && String(entry.title || '').trim().toLowerCase() === needle)
+    );
+    if (student.keywords.length === keywordCount && student.skills.length === headingCount) {
+      return addMessage(`⚠️ No skill matching <strong>"${skillText}"</strong> found for ${student.name}.`, 'bot', 'error');
+    }
     persistStudentEdits(student);
     filterData();
-    return addMessage(`✅ Removed skill <strong>"${skillText}"</strong> from <strong>${student.name}</strong>.`, 'bot', 'success');
+    return addMessage(`✅ Removed skill badge <strong>"${skillText}"</strong> from <strong>${student.name}</strong>.`, 'bot', 'success');
   }
 
   // ── Pattern: Add keyword [kw] to [name]
@@ -698,6 +754,83 @@ function applyCrop() {
   closeCropModal();
 }
 
+function openAddStudentModal() {
+  ['add-student-name', 'add-student-email', 'add-student-stream'].forEach(id => {
+    const input = document.getElementById(id);
+    if (input) input.value = '';
+  });
+  document.getElementById('add-student-modal').classList.remove('hidden');
+  document.getElementById('add-student-name').focus();
+}
+
+function closeAddStudentModal() {
+  document.getElementById('add-student-modal').classList.add('hidden');
+}
+
+function saveNewStudent() {
+  const name = document.getElementById('add-student-name').value.trim();
+  const email = document.getElementById('add-student-email').value.trim().toLowerCase();
+  const stream = document.getElementById('add-student-stream').value.trim();
+  if (!name || !email) {
+    showImportToast('Name and email are required.', 'error');
+    return;
+  }
+  if (!/^\S+@\S+\.\S+$/.test(email)) {
+    showImportToast('Enter a valid email address.', 'error');
+    return;
+  }
+  if (studentsData.some(student => studentIdentity(student) === email)) {
+    showImportToast('A student with this email already exists.', 'error');
+    return;
+  }
+  const student = {
+    id: studentsData.reduce((max, item) => Math.max(max, Number(item.id) || 0), 0) + 1,
+    name, email, raw_stream: stream, streams: stream ? [stream] : [],
+    photo_url: '', photo_id: '', linkedin: '', github: '', skills: [], keywords: [],
+  };
+  const manualStudents = readStoredArray(MANUAL_STUDENTS_KEY);
+  manualStudents.push(student);
+  localStorage.setItem(MANUAL_STUDENTS_KEY, JSON.stringify(manualStudents));
+  localStorage.setItem(DELETED_STUDENTS_KEY, JSON.stringify(
+    readStoredArray(DELETED_STUDENTS_KEY).filter(identity => identity !== email)
+  ));
+  studentsData.push(student);
+  originalStudentsData.push({ ...student });
+  closeAddStudentModal();
+  refreshStreamFilterOptions();
+  filterData();
+  showImportToast(`Added ${name}. Use Edit Details to complete the profile.`, 'success');
+}
+
+function removeSearchedStudent() {
+  const query = document.getElementById('search-name').value.trim();
+  if (!query) {
+    showImportToast('Search for the student you want to remove first.', 'error');
+    return;
+  }
+  const student = findStudentByName(query);
+  if (!student) {
+    showImportToast(`No student found for "${query}".`, 'error');
+    return;
+  }
+  if (!confirm(`Remove ${student.name} from the brochure?`)) return;
+  const identity = studentIdentity(student);
+  const deleted = readStoredArray(DELETED_STUDENTS_KEY);
+  if (!deleted.includes(identity)) deleted.push(identity);
+  localStorage.setItem(DELETED_STUDENTS_KEY, JSON.stringify(deleted));
+  localStorage.setItem(MANUAL_STUDENTS_KEY, JSON.stringify(
+    readStoredArray(MANUAL_STUDENTS_KEY).filter(item => studentIdentity(item) !== identity)
+  ));
+  localStorage.removeItem(`student_edits_${student.email}`);
+  localStorage.removeItem(`student_photo_${student.email}`);
+  studentsData = studentsData.filter(item => item !== student);
+  originalStudentsData = originalStudentsData.filter(item => studentIdentity(item) !== identity);
+  document.getElementById('search-name').value = '';
+  refreshStreamFilterOptions();
+  filterData();
+  showImportToast(`Removed ${student.name}.`, 'success');
+}
+
 // Convert chosen photo to Base64 and trigger the crop modal
 function handleManualPhotoChange(event) {
   const file = event.target.files[0];
@@ -750,6 +883,8 @@ function clearAllManualEdits() {
     }
   }
   keysToRemove.forEach(k => localStorage.removeItem(k));
+  localStorage.removeItem(MANUAL_STUDENTS_KEY);
+  localStorage.removeItem(DELETED_STUDENTS_KEY);
   
   // Reload the page to ensure a clean state from students_cleaned.json
   window.location.reload();
