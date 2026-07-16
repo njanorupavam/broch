@@ -3,8 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sahrdaya Placement Cell 2026 - AI & IoT Recruitment Brochure</title>
-  <meta name="description" content="Meet our graduating specialists in AI, IoT, and Embedded Systems — prepared by Sahrdaya Placement Cell.">
+  <title>makeBRO — Brochure Builder</title>
+  <meta name="description" content="Build, edit, and export polished student recruitment brochures with makeBRO.">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Inter:wght@300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -14,29 +16,22 @@
     <div class="header-container">
       <div class="header-top">
         <div class="brand">
-          <div class="brand-dot"></div>
-          <h1>SAHRDAYA</h1>
+          <div class="brand-copy">
+            <h1>makeBRO Portal</h1>
+          </div>
         </div>
         <div class="controls-right">
-          <button id="btn-import-xlsx" class="btn btn-secondary" onclick="document.getElementById('xlsx-import-input').click()" title="Import student data from Excel file">
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM8.5 18l2.29-3.22L8.5 11.5h1.39l1.36 2.08 1.36-2.08H14l-2.29 3.28L14 18h-1.39l-1.36-2.13L9.89 18H8.5z"/></svg>
-            Import XLSX
-          </button>
-          <button id="btn-edit-text" class="btn btn-secondary" onclick="toggleInlineTextEditing()" title="Click brochure text and type to replace it">
-            Edit Text
-          </button>
-          <button id="btn-export-pdf" class="btn btn-primary" onclick="exportToPDF()">
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/></svg>
-            Save as PDF
-          </button>
-          <button id="btn-directory-view" class="btn btn-secondary active" onclick="switchView('directory')">
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M4 4h4v4H4V4zm6 0h10v4H10V4zM4 10h4v4H4v-4zm6 0h10v4H10v-4zM4 16h4v4H4v-4zm6 0h10v4H10v-4z"/></svg>
-            Interactive
-          </button>
-          <button id="btn-print-view" class="btn btn-secondary" onclick="switchView('print')">
-            <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
-            Brochure Print Preview
-          </button>
+          <nav class="portal-nav" aria-label="Display modes">
+            <button id="btn-directory-view" class="btn btn-secondary active" onclick="switchView('directory')">Interactive</button>
+            <button id="btn-print-view" class="btn btn-secondary" onclick="switchView('print')">Print Preview</button>
+            <button id="btn-export-pdf" class="btn btn-secondary" onclick="exportToPDF()">Export PDF</button>
+          </nav>
+          <div class="top-actions">
+            <button id="btn-edit-text" class="btn" onclick="toggleInlineTextEditing()" title="Click brochure text and type to replace it">Edit Text</button>
+            <button id="btn-import-xlsx" class="btn" onclick="document.getElementById('xlsx-import-input').click()" title="Import student data from Excel file">
+              <span class="material-symbols-outlined">upload_file</span> Import XLSX
+            </button>
+          </div>
         </div>
       </div>
 
@@ -46,9 +41,45 @@
   <!-- Interactive Directory View -->
   <main class="workspace-container">
     <aside class="control-sidebar no-print">
+      <div class="sidebar-product">
+        <div class="sidebar-product-icon"><span class="material-symbols-outlined">school</span></div>
+        <div><strong>Brochure Builder</strong><span>makeBRO studio</span></div>
+      </div>
+      <nav class="sidebar-nav" aria-label="Workspace sections">
+        <button type="button" class="sidebar-nav-item active"><span class="material-symbols-outlined">dashboard</span> Dashboard</button>
+        <button type="button" class="sidebar-nav-item" onclick="document.getElementById('search-name').focus()"><span class="material-symbols-outlined">groups</span> Students</button>
+        <button type="button" class="sidebar-nav-item" onclick="document.getElementById('filter-stream').focus()"><span class="material-symbols-outlined">account_tree</span> Streams</button>
+      </nav>
+      <div class="sidebar-section-title">Filters &amp; settings</div>
       <div class="uploaded-files-panel">
         <div class="uploaded-files-heading">Uploaded XLSX Files</div>
         <div id="imported-files" class="imported-files" aria-label="Imported Excel files"></div>
+      </div>
+
+      <div class="palette-panel">
+        <div class="palette-heading">
+          <div>
+            <span class="palette-eyebrow">Brochure style</span>
+            <strong>Colour palette</strong>
+          </div>
+          <button type="button" class="palette-reset" onclick="resetBrochurePalette()">Reset</button>
+        </div>
+        <div class="palette-presets" aria-label="Colour palette presets">
+          <button type="button" class="palette-swatch forest" onclick="applyPalettePreset('#074c30', '#f3b02b')" title="Forest & Gold"></button>
+          <button type="button" class="palette-swatch ocean" onclick="applyPalettePreset('#123c69', '#38bdf8')" title="Ocean Blue"></button>
+          <button type="button" class="palette-swatch plum" onclick="applyPalettePreset('#532c59', '#f28c6f')" title="Plum & Coral"></button>
+          <button type="button" class="palette-swatch charcoal" onclick="applyPalettePreset('#252a34', '#ff7b54')" title="Charcoal & Orange"></button>
+        </div>
+        <div class="palette-inputs">
+          <label class="palette-field" for="palette-primary">
+            <span>Primary</span>
+            <span class="color-input-shell"><input type="color" id="palette-primary" value="#074c30" oninput="updateBrochurePalette()"><output id="palette-primary-value">#074C30</output></span>
+          </label>
+          <label class="palette-field" for="palette-accent">
+            <span>Accent</span>
+            <span class="color-input-shell"><input type="color" id="palette-accent" value="#f3b02b" oninput="updateBrochurePalette()"><output id="palette-accent-value">#F3B02B</output></span>
+          </label>
+        </div>
       </div>
 
       <div class="filters-panel">

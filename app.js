@@ -10,6 +10,76 @@ const IMPORTED_FILES_KEY = 'brochure_imported_xlsx_files_v1';
 const FRONT_PAGE_NAME_KEY = 'brochure_front_page_name_v1';
 const MANUAL_STUDENTS_KEY = 'brochure_manual_students_v1';
 const DELETED_STUDENTS_KEY = 'brochure_deleted_students_v1';
+const BROCHURE_PALETTE_KEY = 'makebro_palette_v1';
+const DEFAULT_BROCHURE_PALETTE = { primary: '#074c30', accent: '#f3b02b' };
+
+function hexToRgb(hex) {
+  const value = hex.replace('#', '');
+  return {
+    r: parseInt(value.slice(0, 2), 16),
+    g: parseInt(value.slice(2, 4), 16),
+    b: parseInt(value.slice(4, 6), 16),
+  };
+}
+
+function mixHex(hex, target, amount) {
+  const source = hexToRgb(hex);
+  const mixed = ['r', 'g', 'b'].map(channel =>
+    Math.round(source[channel] + (target - source[channel]) * amount)
+      .toString(16).padStart(2, '0')
+  );
+  return `#${mixed.join('')}`;
+}
+
+function applyBrochurePalette(primary, accent, persist = true) {
+  const root = document.documentElement;
+  const primaryRgb = hexToRgb(primary);
+  root.style.setProperty('--primary-green', primary);
+  root.style.setProperty('--primary-green-rgb', `${primaryRgb.r}, ${primaryRgb.g}, ${primaryRgb.b}`);
+  root.style.setProperty('--dark-green', mixHex(primary, 0, 0.48));
+  root.style.setProperty('--light-green', mixHex(primary, 255, 0.9));
+  root.style.setProperty('--badge-text-green', primary);
+  root.style.setProperty('--card-gradient-start', mixHex(primary, 0, 0.12));
+  root.style.setProperty('--card-gradient-end', mixHex(primary, 0, 0.55));
+  root.style.setProperty('--accent-orange', accent);
+  root.style.setProperty('--accent-orange-hover', mixHex(accent, 0, 0.12));
+
+  const primaryInput = document.getElementById('palette-primary');
+  const accentInput = document.getElementById('palette-accent');
+  if (primaryInput) primaryInput.value = primary;
+  if (accentInput) accentInput.value = accent;
+  const primaryValue = document.getElementById('palette-primary-value');
+  const accentValue = document.getElementById('palette-accent-value');
+  if (primaryValue) primaryValue.value = primary.toUpperCase();
+  if (accentValue) accentValue.value = accent.toUpperCase();
+  if (persist) localStorage.setItem(BROCHURE_PALETTE_KEY, JSON.stringify({ primary, accent }));
+}
+
+function updateBrochurePalette() {
+  const primary = document.getElementById('palette-primary')?.value || DEFAULT_BROCHURE_PALETTE.primary;
+  const accent = document.getElementById('palette-accent')?.value || DEFAULT_BROCHURE_PALETTE.accent;
+  applyBrochurePalette(primary, accent);
+}
+
+function applyPalettePreset(primary, accent) {
+  applyBrochurePalette(primary, accent);
+}
+
+function resetBrochurePalette() {
+  localStorage.removeItem(BROCHURE_PALETTE_KEY);
+  applyBrochurePalette(DEFAULT_BROCHURE_PALETTE.primary, DEFAULT_BROCHURE_PALETTE.accent, false);
+}
+
+function loadBrochurePalette() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(BROCHURE_PALETTE_KEY) || 'null');
+    if (saved?.primary && saved?.accent) {
+      applyBrochurePalette(saved.primary, saved.accent, false);
+      return;
+    }
+  } catch (error) {}
+  applyBrochurePalette(DEFAULT_BROCHURE_PALETTE.primary, DEFAULT_BROCHURE_PALETTE.accent, false);
+}
 
 function readStoredArray(key) {
   try {
@@ -1082,6 +1152,7 @@ function showImportToast(message, type = 'success') {
 
 // On document load, start with imported XLSX data only.
 document.addEventListener('DOMContentLoaded', () => {
+  loadBrochurePalette();
   baseStudentsData = [];
   const frontPageNameInput = document.getElementById('front-page-name');
   if (frontPageNameInput) {
@@ -1197,15 +1268,26 @@ function handleImageError(img, initials) {
 // Render the interactive directory (web layout)
 function renderDirectory(students) {
   const container = document.getElementById('directory-view');
-  container.innerHTML = '';
+  container.innerHTML = `
+    <div class="directory-intro">
+      <div class="directory-title-row">
+        <span class="directory-title-rule"></span>
+        <h2>Student Profiles</h2>
+      </div>
+      <div class="directory-summary">
+        <strong>${students.length} ${students.length === 1 ? 'match' : 'matches'} found</strong>
+        <span>Refined by current workspace filters</span>
+      </div>
+    </div>
+  `;
 
   if (students.length === 0) {
-    container.innerHTML = `
+    container.insertAdjacentHTML('beforeend', `
       <div class="empty-state">
         <h3>No students found</h3>
         <p>Try adjusting your search query or stream filter.</p>
       </div>
-    `;
+    `);
     return;
   }
 
@@ -1343,7 +1425,7 @@ function renderPrintPreview(students) {
   coverPage.className = 'a4-page cover-page';
   coverPage.innerHTML = `
     <div class="cover-header">
-      <div class="cell-name">SAHRDAYA &middot; PLACEMENT CELL</div>
+      <div class="cell-name">makeBRO &middot; BROCHURE BUILDER</div>
       <div>2026</div>
     </div>
     
@@ -1462,7 +1544,7 @@ function renderPrintPreview(students) {
       </div>
       
       <div class="profile-page-footer">
-        <span class="footer-text">SAHRDAYA PLACEMENT BROCHURE</span>
+        <span class="footer-text">makeBRO RECRUITMENT BROCHURE</span>
       </div>
     `;
     container.appendChild(profilePage);
