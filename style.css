@@ -576,6 +576,117 @@ body {
   position: relative;
 }
 
+.student-order-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.4rem;
+  min-height: 42px;
+  padding: 0.35rem 0.65rem;
+  color: #ffffff;
+  background: var(--card-gradient-end);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.student-position-label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font: 700 0.64rem var(--font-body);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.student-position-input {
+  width: 54px;
+  height: 30px;
+  padding: 0.2rem 0.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 6px;
+  color: #1c1c1c;
+  background: #ffffff;
+  font: 800 0.75rem var(--font-body);
+  text-align: center;
+}
+
+.student-position-input:focus {
+  outline: 2px solid var(--accent-orange);
+  outline-offset: 1px;
+}
+
+.student-drag-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  min-width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 7px;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.24);
+  cursor: grab;
+  touch-action: none;
+}
+
+.student-drag-handle .material-symbols-outlined {
+  font-size: 17px;
+}
+
+.student-drag-handle:hover,
+.student-drag-handle:focus-visible {
+  background: rgba(0, 0, 0, 0.45);
+  outline: 2px solid var(--accent-orange);
+  outline-offset: 2px;
+}
+
+.student-drag-handle:active {
+  cursor: grabbing;
+}
+
+.web-student-card.is-dragging {
+  opacity: 0.5;
+  transform: scale(0.98);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.22);
+}
+
+.directory-summary > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.directory-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.reset-order-btn {
+  padding: 0.4rem 0.65rem;
+  border: 1px solid currentColor;
+  border-radius: 6px;
+  color: var(--text-medium);
+  background: transparent;
+  font: 700 0.68rem var(--font-body);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.reset-order-btn:hover {
+  color: var(--primary-green);
+  background: var(--light-green);
+}
+
+@media (max-width: 520px) {
+  .directory-summary {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
 .web-student-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
