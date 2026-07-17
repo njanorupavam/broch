@@ -10,6 +10,7 @@ const IMPORTED_FILES_KEY = 'brochure_imported_xlsx_files_v1';
 const FRONT_PAGE_NAME_KEY = 'brochure_front_page_name_v1';
 const MANUAL_STUDENTS_KEY = 'brochure_manual_students_v1';
 const DELETED_STUDENTS_KEY = 'brochure_deleted_students_v1';
+const STUDENT_ORDER_KEY = 'brochure_student_order_v1';
 const BROCHURE_PALETTE_KEY = 'makebro_palette_v1';
 const DEFAULT_BROCHURE_PALETTE = { primary: '#074c30', accent: '#f3b02b' };
 
@@ -92,6 +93,41 @@ function readStoredArray(key) {
 
 function studentIdentity(student) {
   return (student.email || student.name || '').trim().toLowerCase();
+}
+
+function studentOrderIdentity(student) {
+  return studentIdentity(student) || `id:${student.id}`;
+}
+
+function applyStoredStudentOrder() {
+  const savedOrder = readStoredArray(STUDENT_ORDER_KEY);
+  if (!savedOrder.length) return;
+
+  const orderIndex = new Map(savedOrder.map((identity, index) => [identity, index]));
+  studentsData = studentsData
+    .map((student, index) => ({ student, index }))
+    .sort((a, b) => {
+      const aOrder = orderIndex.get(studentOrderIdentity(a.student));
+      const bOrder = orderIndex.get(studentOrderIdentity(b.student));
+      if (aOrder === undefined && bOrder === undefined) return a.index - b.index;
+      if (aOrder === undefined) return 1;
+      if (bOrder === undefined) return -1;
+      return aOrder - bOrder;
+    })
+    .map(item => item.student);
+}
+
+function persistStudentOrder() {
+  localStorage.setItem(
+    STUDENT_ORDER_KEY,
+    JSON.stringify(studentsData.map(studentOrderIdentity))
+  );
+}
+
+function resetStudentOrder() {
+  localStorage.removeItem(STUDENT_ORDER_KEY);
+  rebuildStudentsFromImports();
+  showImportToast('Student order reset.', 'success');
 }
 
 // Uploading a workbook is an explicit request to include its students again.
@@ -210,6 +246,7 @@ function rebuildStudentsFromImports() {
   const deletedStudents = new Set(readStoredArray(DELETED_STUDENTS_KEY));
   studentsData = studentsData.filter(student => !deletedStudents.has(studentIdentity(student)));
   loadManualEdits();
+  applyStoredStudentOrder();
   originalStudentsData = studentsData.map(student => ({ ...student }));
   loadManualPhotos();
   refreshStreamFilterOptions();
@@ -523,6 +560,7 @@ function applyFieldChange(student, field, value) {
   }
 
   persistStudentEdits(student);
+  persistStudentOrder();
   filterData();
   addMessage(msg, 'bot', 'success');
 }
@@ -622,6 +660,7 @@ function saveEditedStudent() {
     skills:   student.skills,
   };
   localStorage.setItem(`student_edits_${student.email}`, JSON.stringify(editPayload));
+  persistStudentOrder();
 
   closeEditModal();
   filterData();
@@ -878,6 +917,7 @@ function saveNewStudent() {
   ));
   studentsData.push(student);
   originalStudentsData.push({ ...student });
+  persistStudentOrder();
   closeAddStudentModal();
   refreshStreamFilterOptions();
   filterData();
@@ -907,6 +947,7 @@ function removeSearchedStudent() {
   localStorage.removeItem(`student_photo_${student.email}`);
   studentsData = studentsData.filter(item => item !== student);
   originalStudentsData = originalStudentsData.filter(item => studentIdentity(item) !== identity);
+  persistStudentOrder();
   document.getElementById('search-name').value = '';
   refreshStreamFilterOptions();
   filterData();
@@ -967,6 +1008,7 @@ function clearAllManualEdits() {
   keysToRemove.forEach(k => localStorage.removeItem(k));
   localStorage.removeItem(MANUAL_STUDENTS_KEY);
   localStorage.removeItem(DELETED_STUDENTS_KEY);
+  localStorage.removeItem(STUDENT_ORDER_KEY);
   
   // Reload the page to ensure a clean state from students_cleaned.json
   window.location.reload();
@@ -1289,11 +1331,16 @@ function renderDirectory(students) {
         <h2>Student Profiles</h2>
       </div>
       <div class="directory-summary">
-        <strong>${students.length} ${students.length === 1 ? 'match' : 'matches'} found</strong>
-        <span>Refined by current workspace filters</span>
+        <div>
+          <strong>${students.length} ${students.length === 1 ? 'match' : 'matches'} found</strong>
+          <span>Drag cards by the grip to set their brochure order</span>
+        </div>
+        <button type="button" class="reset-order-btn" onclick="resetStudentOrder()">Reset order</button>
       </div>
     </div>
   `;
+  container.ondragover = handleStudentDirectoryDragOver;
+  container.ondrop = handleStudentDirectoryDrop;
 
   if (students.length === 0) {
     container.insertAdjacentHTML('beforeend', `
@@ -1344,6 +1391,7 @@ function renderDirectory(students) {
 
     const card = document.createElement('div');
     card.className = 'web-student-card';
+    card.dataset.studentIdentity = studentOrderIdentity(student);
     
     // Check photo
     const initials = getInitials(student.name);
@@ -1360,6 +1408,15 @@ function renderDirectory(students) {
     const photoButtonText = student.photo_url ? 'Adjust Photo' : 'Add Photo';
 
     card.innerHTML = `
+      <div class="student-order-toolbar">
+        <label class="student-position-label">
+          <span>Position</span>
+          <input type="number" class="student-position-input" min="1" max="${studentsData.length}" value="${studentsData.indexOf(student) + 1}" aria-label="Brochure position for ${escapeHtml(student.name)}">
+        </label>
+        <button type="button" class="student-drag-handle" title="Drag to reorder ${escapeHtml(student.name)}" aria-label="Drag to reorder ${escapeHtml(student.name)}">
+          <span class="material-symbols-outlined" aria-hidden="true">drag_indicator</span>
+        </button>
+      </div>
       <div class="web-card-header">
         <div class="web-avatar-wrapper" onclick="triggerPhotoUpload('${student.email}')" title="Click to upload/change photo">
           ${photoImgHtml}
@@ -1389,8 +1446,177 @@ function renderDirectory(students) {
         ${keywordsHtml ? `<div class="web-keywords-pills">${keywordsHtml}</div>` : ''}
       </div>
     `;
+    initializeStudentCardDrag(card);
     container.appendChild(card);
   });
+}
+
+let draggedStudentCard = null;
+let studentDropCompleted = false;
+let touchStudentDrag = null;
+
+function positionStudentCardAtPointer(draggedCard, event) {
+  const targetCard = document.elementFromPoint(event.clientX, event.clientY)?.closest('.web-student-card');
+  if (!targetCard || targetCard === draggedCard || targetCard.parentNode !== draggedCard.parentNode) return;
+  const rect = targetCard.getBoundingClientRect();
+  const xDistance = event.clientX - (rect.left + rect.width / 2);
+  const yDistance = event.clientY - (rect.top + rect.height / 2);
+  const placeBefore = Math.abs(xDistance) > Math.abs(yDistance)
+    ? xDistance < 0
+    : yDistance < 0;
+  targetCard.parentNode.insertBefore(draggedCard, placeBefore ? targetCard : targetCard.nextSibling);
+}
+
+function initializeStudentCardDrag(card) {
+  const handle = card.querySelector('.student-drag-handle');
+  const positionInput = card.querySelector('.student-position-input');
+  if (!handle) return;
+
+  positionInput?.addEventListener('change', () => {
+    moveStudentToPosition(card.dataset.studentIdentity, positionInput.value);
+  });
+  positionInput?.addEventListener('keydown', event => {
+    if (event.key !== 'Enter') return;
+    event.preventDefault();
+    positionInput.blur();
+  });
+
+  handle.addEventListener('pointerdown', event => {
+    if (event.pointerType === 'mouse') {
+      card.draggable = true;
+      return;
+    }
+    touchStudentDrag = {
+      card,
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      active: false,
+    };
+    handle.setPointerCapture(event.pointerId);
+  });
+
+  handle.addEventListener('pointermove', event => {
+    if (!touchStudentDrag || touchStudentDrag.pointerId !== event.pointerId) return;
+    const distance = Math.hypot(
+      event.clientX - touchStudentDrag.startX,
+      event.clientY - touchStudentDrag.startY
+    );
+    if (!touchStudentDrag.active && distance < 7) return;
+    if (!touchStudentDrag.active) {
+      touchStudentDrag.active = true;
+      touchStudentDrag.card.classList.add('is-dragging');
+    }
+    event.preventDefault();
+    positionStudentCardAtPointer(touchStudentDrag.card, event);
+  });
+
+  const finishTouchDrag = event => {
+    if (!touchStudentDrag || touchStudentDrag.pointerId !== event.pointerId) return;
+    const shouldCommit = touchStudentDrag.active;
+    touchStudentDrag.card.classList.remove('is-dragging');
+    touchStudentDrag = null;
+    if (shouldCommit) commitVisibleStudentOrder();
+  };
+  handle.addEventListener('pointerup', finishTouchDrag);
+  handle.addEventListener('pointercancel', finishTouchDrag);
+
+  handle.addEventListener('keydown', event => {
+    if (event.key !== 'ArrowUp' && event.key !== 'ArrowLeft' &&
+        event.key !== 'ArrowDown' && event.key !== 'ArrowRight') return;
+    event.preventDefault();
+    moveStudentCardByKeyboard(card, event.key === 'ArrowUp' || event.key === 'ArrowLeft' ? -1 : 1);
+  });
+
+  card.addEventListener('dragstart', event => {
+    if (!card.draggable) {
+      event.preventDefault();
+      return;
+    }
+    draggedStudentCard = card;
+    studentDropCompleted = false;
+    card.classList.add('is-dragging');
+    event.dataTransfer.effectAllowed = 'move';
+    event.dataTransfer.setData('text/plain', card.dataset.studentIdentity);
+  });
+
+  card.addEventListener('dragend', () => {
+    card.draggable = false;
+    card.classList.remove('is-dragging');
+    draggedStudentCard = null;
+    if (!studentDropCompleted) filterData();
+  });
+}
+
+function moveStudentToPosition(identity, requestedPosition) {
+  const currentIndex = studentsData.findIndex(student => studentOrderIdentity(student) === identity);
+  if (currentIndex < 0) return;
+
+  const parsedPosition = Number.parseInt(requestedPosition, 10);
+  const targetIndex = Number.isFinite(parsedPosition)
+    ? Math.min(Math.max(parsedPosition, 1), studentsData.length) - 1
+    : currentIndex;
+  if (targetIndex === currentIndex) {
+    filterData();
+    return;
+  }
+
+  const [student] = studentsData.splice(currentIndex, 1);
+  studentsData.splice(targetIndex, 0, student);
+  persistStudentOrder();
+  filterData();
+  showImportToast(`${student.name} moved to position ${targetIndex + 1}.`, 'success');
+}
+
+function handleStudentDirectoryDragOver(event) {
+  if (!draggedStudentCard) return;
+  event.preventDefault();
+  event.dataTransfer.dropEffect = 'move';
+  positionStudentCardAtPointer(draggedStudentCard, event);
+}
+
+function handleStudentDirectoryDrop(event) {
+  if (!draggedStudentCard) return;
+  event.preventDefault();
+  studentDropCompleted = true;
+  commitVisibleStudentOrder();
+}
+
+function moveStudentCardByKeyboard(card, direction) {
+  const cards = [...document.querySelectorAll('#directory-view .web-student-card')];
+  const currentIndex = cards.indexOf(card);
+  const target = cards[currentIndex + direction];
+  if (!target) return;
+
+  if (direction < 0) card.parentNode.insertBefore(card, target);
+  else card.parentNode.insertBefore(card, target.nextSibling);
+  commitVisibleStudentOrder();
+  requestAnimationFrame(() => {
+    const movedCard = [...document.querySelectorAll('#directory-view .web-student-card')]
+      .find(item => item.dataset.studentIdentity === card.dataset.studentIdentity);
+    movedCard?.querySelector('.student-drag-handle')?.focus();
+  });
+}
+
+function commitVisibleStudentOrder() {
+  const orderedIdentities = [...document.querySelectorAll('#directory-view .web-student-card')]
+    .map(card => card.dataset.studentIdentity);
+  const visibleStudents = new Map(
+    studentsData
+      .filter(student => orderedIdentities.includes(studentOrderIdentity(student)))
+      .map(student => [studentOrderIdentity(student), student])
+  );
+  const visibleIdentitySet = new Set(orderedIdentities);
+  let visibleIndex = 0;
+
+  studentsData = studentsData.map(student =>
+    visibleIdentitySet.has(studentOrderIdentity(student))
+      ? visibleStudents.get(orderedIdentities[visibleIndex++])
+      : student
+  );
+  persistStudentOrder();
+  filterData();
+  showImportToast('Student order saved.', 'success');
 }
 
 // Render the print brochure (A4 pagination layout)
